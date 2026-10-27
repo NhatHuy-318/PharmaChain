@@ -1,4 +1,4 @@
-# Batch Registry: truy xuất nguồn gốc nguyên liệu dược phẩm trên blockchain
+# PharmaChain: truy xuất nguồn gốc nguyên liệu dược phẩm trên blockchain
 
 Đồ án nhóm môn **Blockchain & Hợp đồng thông minh** (BIM5017), Trường Đại học Kinh tế - Luật, ĐHQG TP.HCM.
 

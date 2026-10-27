@@ -1,5 +1,5 @@
 {
-  "name": "batch-registry",
+  "name": "pharmachain",
   "version": "0.1.0",
   "private": true,
   "description": "Truy xuất nguồn gốc nguyên liệu dược phẩm trên blockchain bằng smart contract",
