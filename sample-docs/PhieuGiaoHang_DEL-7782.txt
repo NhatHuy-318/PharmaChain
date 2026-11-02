@@ -1,0 +1,17 @@
+TỔNG CÔNG TY DƯỢC VIỆT NAM - VINAPHARM
+------------------------------------------------------------
+PHIẾU GIAO HÀNG & LỆNH ĐIỀU ĐỘNG CHUYỂN GIAO
+Số phiếu: DEL-7782
+Ngày khởi tạo chuyển giao: 20/09/2026
+
+- Đơn vị giao (Importer): Tổng Công ty Dược Việt Nam - Vinapharm
+- Đơn vị nhận (Receiver): Nhà máy Dược phẩm Delta
+- Địa chỉ ví Receiver: 0x5555555555555555555555555555555555555555
+- Số lô hàng hóa: PEN-K-20260901-001
+- Số lượng bàn giao: 20 thùng (500 kg)
+- Phương tiện vận tải: Xe chuyên dụng kiểm soát nhiệt độ thùng kín (Biển số 51C-889.24)
+- Điều kiện hành trình: Ghi nhận nhiệt độ 18°C - 22°C suốt tuyến
+
+ĐƠN VỊ VẬN CHUYỂN & GIAO HÀNG
+(Đã kích hoạt giao dịch initiateTransfer trên blockchain)
+

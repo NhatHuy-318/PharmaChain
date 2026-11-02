@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Quản trị viên (Admin) - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/role-portal.css">
+</head>
+<body data-page="admin">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container" id="role-guard-mount">
+      <!-- Portal Header -->
+      <section class="portal-header">
+        <div class="portal-title-row">
+          <div>
+            <h1 class="portal-title">Cổng Quản trị viên (Admin Portal)</h1>
+            <p class="text-lead" style="margin: 0;">
+              Thẩm định hồ sơ pháp lý, cấp và thu hồi vai trò on-chain của các thực thể trong chuỗi cung ứng dược phẩm.
+            </p>
+          </div>
+          <span class="badge badge-role-admin" style="font-size: 13px; padding: 6px 14px;">
+            Quản trị viên tối cao
+          </span>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-2 gap-6" style="align-items: flex-start;">
+        <!-- Column 1: Grant Role Form -->
+        <div class="form-card">
+          <h3 style="margin-bottom: var(--space-4); color: var(--color-primary-dark);">
+            Cấp vai trò mới cho đơn vị
+          </h3>
+          <p class="text-muted" style="font-size: var(--font-size-xs); margin-bottom: var(--space-5);">
+            Mỗi ví chỉ được giữ một vai trò duy nhất. File giấy phép được băm SHA-256 đưa vào sự kiện RoleGranted.
+          </p>
+
+          <form id="admin-grant-form">
+            <div class="form-group">
+              <label for="grant-wallet-addr" class="form-label">
+                Địa chỉ ví Ethereum/RSK <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="grant-wallet-addr"
+                class="form-input text-mono"
+                placeholder="0x..."
+                required
+              />
+              <span class="form-hint">Ví đại diện của tổ chức cần cấp quyền</span>
+            </div>
+
+            <div class="form-group">
+              <label for="grant-role-select" class="form-label">
+                Vai trò cấp phép <span class="required">*</span>
+              </label>
+              <select id="grant-role-select" class="form-select" required>
+                <option value="2">Nhà sản xuất (Manufacturer)</option>
+                <option value="3">Đơn vị kiểm nghiệm (Inspector)</option>
+                <option value="4">Đơn vị nhập khẩu (Importer)</option>
+                <option value="5">Bên nhận / Nhà máy dược (Receiver)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="grant-org-name" class="form-label">
+                Tên tổ chức / Đơn vị <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="grant-org-name"
+                class="form-input"
+                placeholder="vd: Dược Hậu Giang Pharma"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="grant-license-no" class="form-label">
+                Số hiệu giấy phép / ĐKKD
+              </label>
+              <input
+                type="text"
+                id="grant-license-no"
+                class="form-input"
+                placeholder="vd: GP-DKKD-2026-99"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                File hồ sơ pháp lý / Giấy phép (Tự động băm SHA-256) <span class="required">*</span>
+              </label>
+              <div class="file-upload-zone" onclick="document.getElementById('grant-doc-file').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <div class="file-upload-info">Bấm để chọn file PDF / Văn bản giấy phép</div>
+                <input type="file" id="grant-doc-file" style="display: none;" required />
+              </div>
+              <div id="grant-hash-preview" class="file-hash-preview"></div>
+            </div>
+
+            <button type="submit" id="btn-submit-grant" class="btn btn-primary" style="width: 100%;">
+              Cấp vai trò cho ví
+            </button>
+          </form>
+        </div>
+
+        <!-- Column 2: Current Authorized Entities Table -->
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Danh sách Đơn vị đã cấp quyền</h3>
+            <span class="badge badge-role">On-Chain Mapping</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Địa chỉ ví</th>
+                  <th>Vai trò</th>
+                  <th>Tên đơn vị</th>
+                  <th>Giấy phép</th>
+                  <th>Mã băm</th>
+                  <th>Ngày cấp</th>
+                  <th style="text-align: right;">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orgs-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp danh sách từ sổ cái...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initAdminPage } from './js/pages/admin.page.js';
+    initAdminPage();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+NHÀ MÁY DƯỢC PHẨM DELTA - PHÒNG ĐẢM BẢO CHẤT LƯỢNG (QC)
+------------------------------------------------------------
+PHIẾU KIỂM TRA CHẤT LƯỢNG ĐẦU VÀO TẠI NƠI NHẬN
+Số báo cáo: QC-DELTA-0457
+Ngày kiểm tra: 24/09/2026
+
+- Nguyên liệu: Penicillin G potassium
+- Số lô kiểm tra: PEN-K-20260901-001
+- Tình trạng kiểm nghiệm: ĐẠT TIÊU CHUẨN XUẤT KHO SẢN XUẤT (PASSED)
+- Độ tinh khiết thực nghiệm: 99.3%
+- Nhiệt độ kho bảo quản: 20°C
+- Trạng thái phê duyệt: RELEASED (ĐƯỢC GIẢI PHÓNG ĐƯA VÀO DÂY CHUYỀN SẢN XUẤT)
+
+GIÁM ĐỐC CHẤT LƯỢNG NHÀ MÁY DELTA
+(Đã gọi recordReceivingInspection, lô chuyển sang RELEASED trên blockchain)
+

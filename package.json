@@ -5,7 +5,8 @@
   "description": "Truy xuất nguồn gốc nguyên liệu dược phẩm trên blockchain bằng smart contract",
   "scripts": {
     "test": "node --no-deprecation test/run.js",
-    "test:report": "node --no-deprecation test/run.js --report"
+    "test:report": "node --no-deprecation test/run.js --report",
+    "test:mock": "node scripts/test-mock-chain.mjs"
   },
   "devDependencies": {
     "ganache": "7.9.2",

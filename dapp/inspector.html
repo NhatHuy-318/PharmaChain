@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Kiểm nghiệm (Inspector) - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/role-portal.css">
+</head>
+<body data-page="inspector">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container" id="role-guard-mount">
+      <!-- Portal Header -->
+      <section class="portal-header">
+        <div class="portal-title-row">
+          <div>
+            <h1 class="portal-title">Cổng Kiểm nghiệm (Inspector Portal)</h1>
+            <p class="text-lead" style="margin: 0;">
+              Tiếp nhận lô hàng đã đăng ký, thực hiện kiểm nghiệm và ghi nhận kết quả Đạt / Không đạt lên Blockchain.
+            </p>
+          </div>
+          <span class="badge badge-role-inspector" style="font-size: 13px; padding: 6px 14px;">
+            Đơn vị kiểm nghiệm độc lập
+          </span>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <div class="portal-tabs">
+        <button class="portal-tab-btn active" data-tab="queue">
+          Hàng đợi kiểm nghiệm
+          <span id="queue-badge" class="badge badge-count" style="margin-left: 6px;"></span>
+        </button>
+        <button class="portal-tab-btn" data-tab="history">
+          Lịch sử đã kiểm nghiệm
+        </button>
+      </div>
+
+      <!-- Tab: Queue -->
+      <div class="portal-tab-panel active" data-panel="queue">
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Lô hàng chờ kiểm nghiệm (Trạng thái: Registered)</h3>
+            <span class="badge badge-status-registered">Cần kiểm nghiệm</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Nhà sản xuất</th>
+                  <th>Ngày đăng ký</th>
+                  <th>Hạn dùng</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="inspector-queue-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu từ sổ cái...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: History -->
+      <div class="portal-tab-panel" data-panel="history" style="display: none;">
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Lịch sử kiểm nghiệm (Tested / Rejected)</h3>
+            <span class="badge badge-role">Đã xử lý</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Số phiếu KN</th>
+                  <th>Ngày kiểm nghiệm</th>
+                  <th>Phương pháp</th>
+                </tr>
+              </thead>
+              <tbody id="inspector-history-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form: Ghi nhận kết quả kiểm nghiệm (Bước 2) -->
+      <div id="inspector-form-container" class="form-card" style="display: none; margin-top: var(--space-6);">
+        <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+          <div>
+            <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 2: Ghi nhận kết quả kiểm nghiệm</h3>
+            <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+              Kết quả kiểm nghiệm được ghi 1 lần duy nhất và không thể thay đổi sau khi xác nhận.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--space-2); align-items: center;">
+            <span class="badge badge-status-tested">Kết quả đích: Tested / Rejected</span>
+            <button type="button" id="btn-cancel-test-form" class="btn btn-ghost btn-sm">
+              ✕ Hủy
+            </button>
+          </div>
+        </div>
+
+        <!-- Batch info readonly -->
+        <div class="form-grid-2" style="margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4); background: var(--color-primary-light, #f0eefb); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <div>
+            <span class="text-muted" style="font-size: var(--font-size-xs);">Số hiệu lô đang kiểm nghiệm:</span>
+            <div id="test-target-batch-no" class="text-mono" style="font-weight: 600; color: var(--color-primary-dark); font-size: var(--font-size-base);">—</div>
+          </div>
+          <div>
+            <span class="text-muted" style="font-size: var(--font-size-xs);">Tên nguyên liệu:</span>
+            <div id="test-target-material" style="font-weight: 600; color: var(--color-primary-dark); font-size: var(--font-size-base);">—</div>
+          </div>
+        </div>
+
+        <form id="inspector-test-form">
+          <!-- Hàng 1: Kết quả & Số phiếu kiểm nghiệm -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="test-result-decision" class="form-label">
+                Kết quả kiểm nghiệm <span class="required">*</span>
+              </label>
+              <select id="test-result-decision" class="form-select" required>
+                <option value="">— Chọn kết quả —</option>
+                <option value="true">✅ ĐẠT yêu cầu (Passed)</option>
+                <option value="false">❌ KHÔNG ĐẠT (Failed / Rejected)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="test-report-no" class="form-label">
+                Số hiệu phiếu kiểm nghiệm <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="test-report-no"
+                class="form-input text-mono"
+                placeholder="vd: KN-0932 / VKNSG-2026-001"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Hàng 2: Ngày kiểm nghiệm & Phương pháp -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="test-date" class="form-label">
+                Ngày kiểm nghiệm <span class="required">*</span>
+              </label>
+              <input type="date" id="test-date" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label for="test-method" class="form-label">
+                Phương pháp kiểm nghiệm <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="test-method"
+                class="form-input"
+                placeholder="vd: HPLC, UV-Vis, IR Spectroscopy"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Hàng 3: Ghi chú -->
+          <div class="form-group">
+            <label for="test-notes" class="form-label">Ghi chú kết quả (tùy chọn)</label>
+            <input
+              type="text"
+              id="test-notes"
+              class="form-input"
+              placeholder="vd: Tất cả thông số nằm trong giới hạn cho phép theo USP 2025"
+            />
+          </div>
+
+          <!-- Upload phiếu kiểm nghiệm -->
+          <div class="form-group">
+            <label class="form-label">
+              File Phiếu kiểm nghiệm (COA / Report) <span class="required">*</span>
+            </label>
+            <div class="file-upload-zone" onclick="document.getElementById('inspector-report-file').click()">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <div class="file-upload-info">Bấm để tải Phiếu kiểm nghiệm (Hệ thống tính SHA-256 tức thì)</div>
+              <input type="file" id="inspector-report-file" style="display: none;" required />
+            </div>
+            <div id="inspector-hash-preview" class="file-hash-preview"></div>
+          </div>
+
+          <!-- Warning note -->
+          <div class="alert alert-warning" style="margin-bottom: var(--space-4);">
+            <strong>⚠ Lưu ý quan trọng:</strong> Kết quả kiểm nghiệm được ghi nhận <strong>1 lần duy nhất</strong> 
+            lên Blockchain và <strong>không thể chỉnh sửa</strong> sau khi xác nhận. Hãy kiểm tra kỹ trước khi gửi.
+          </div>
+
+          <button type="submit" id="btn-submit-test" class="btn btn-primary btn-lg" style="width: 100%;">
+            Ghi nhận kết quả kiểm nghiệm lên Blockchain
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initInspectorPage } from './js/pages/inspector.page.js';
+    initInspectorPage();
+  </script>
+</body>
+</html>
+

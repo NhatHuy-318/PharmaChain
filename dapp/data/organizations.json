@@ -1,0 +1,69 @@
+[
+  {
+    "address": "0x1111111111111111111111111111111111111111",
+    "role": 1,
+    "roleName": "Admin",
+    "name": "Cục Quản lý Dược - Bộ Y tế (Admin)",
+    "licenseNo": "QLD-GP-0001",
+    "licenseHash": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "contactEmail": "admin@dav.gov.vn",
+    "grantedAt": 1725150000,
+    "txHash": "0xaaa0000000000000000000000000000000000000000000000000000000000001"
+  },
+  {
+    "address": "0x2222222222222222222222222222222222222222",
+    "role": 2,
+    "roleName": "Manufacturer",
+    "name": "Dược Hậu Giang Pharma (DHG Pharma)",
+    "licenseNo": "DHG-GMP-2024",
+    "licenseHash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "contactEmail": "qa@dhgpharma.com.vn",
+    "grantedAt": 1725150600,
+    "txHash": "0xaaa0000000000000000000000000000000000000000000000000000000000002"
+  },
+  {
+    "address": "0x3333333333333333333333333333333333333333",
+    "role": 3,
+    "roleName": "Inspector",
+    "name": "Viện Kiểm nghiệm Thuốc TP.HCM (IDQC HCMC)",
+    "licenseNo": "IDQC-ISO-17025",
+    "licenseHash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "contactEmail": "kn@vienkiemnghiem.gov.vn",
+    "grantedAt": 1725151200,
+    "txHash": "0xaaa0000000000000000000000000000000000000000000000000000000000003"
+  },
+  {
+    "address": "0x4444444444444444444444444444444444444444",
+    "role": 4,
+    "roleName": "Importer",
+    "name": "Tổng Công ty Dược Việt Nam - CTCP (Vinapharm)",
+    "licenseNo": "VNP-NK-2025-089",
+    "licenseHash": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "contactEmail": "import@vinapharm.com.vn",
+    "grantedAt": 1725151800,
+    "txHash": "0xaaa0000000000000000000000000000000000000000000000000000000000004"
+  },
+  {
+    "address": "0x5555555555555555555555555555555555555555",
+    "role": 5,
+    "roleName": "Receiver",
+    "name": "Nhà máy Dược phẩm Delta (Delta Pharma)",
+    "licenseNo": "DELTA-FACTORY-GMP",
+    "licenseHash": "0x5555555555555555555555555555555555555555555555555555555555555555",
+    "contactEmail": "supply@deltapharma.com.vn",
+    "grantedAt": 1725152400,
+    "txHash": "0xaaa0000000000000000000000000000000000000000000000000000000000005"
+  },
+  {
+    "address": "0x9999999999999999999999999999999999999999",
+    "role": 0,
+    "roleName": "Viewer",
+    "name": "Khách thăm quan & Bệnh viện tra cứu công khai",
+    "licenseNo": "N/A",
+    "licenseHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "contactEmail": "public@pharmachain.org",
+    "grantedAt": 0,
+    "txHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+]
+

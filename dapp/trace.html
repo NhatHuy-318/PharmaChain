@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truy xuất nguồn gốc & Đối chiếu toàn vẹn - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/trace.css">
+</head>
+<body data-page="trace">
+  <!-- Dev Bar for Mock Testing -->
+  <div id="dev-bar-mount"></div>
+
+  <!-- Global Header Navigation -->
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container">
+      <!-- Loading Indicator -->
+      <div id="trace-loading" style="text-align: center; padding: var(--space-16) 0;">
+        <div style="font-size: var(--font-size-xl); color: var(--color-primary); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">
+          Đang truy vấn sổ cái Blockchain Rootstock...
+        </div>
+        <p class="text-muted">Đang tổng hợp lịch sử các sự kiện và trạng thái lô nguyên liệu...</p>
+      </div>
+
+      <!-- Not Found State -->
+      <div id="trace-not-found" style="display: none; text-align: center; padding: var(--space-16) 0;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: #FEECEE; color: #B4232C; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <h2 style="margin-bottom: var(--space-2);">Không tìm thấy thông tin lô yêu cầu</h2>
+        <p class="text-muted" style="margin-bottom: var(--space-6);">Mã lô hoặc số hiệu không tồn tại trên smart contract BatchRegistry.</p>
+        <a href="search.html" class="btn btn-primary">
+          &larr; Quay lại danh sách tìm kiếm
+        </a>
+      </div>
+
+      <!-- Trace Content Section -->
+      <div id="trace-content" style="display: none;">
+        <!-- Header Card -->
+        <div class="trace-header-card">
+          <div>
+            <div class="trace-batch-badge-row">
+              <span id="trace-batch-no" class="trace-batch-no">PEN-K-20260901-001</span>
+              <span id="trace-status-badge" class="badge badge-status-released">Đạt kiểm tra / Được giải phóng</span>
+              <span id="trace-expiry-badge" class="badge">Hạn dùng: 01/09/2029</span>
+            </div>
+
+            <h2 id="trace-material-title" class="trace-material-title">Penicillin G potassium</h2>
+
+            <!-- Supply Chain Actors Grid -->
+            <div class="trace-parties-grid">
+              <div class="trace-party-box">
+                <span class="trace-party-role">Nhà sản xuất</span>
+                <span id="party-mfg-name" class="trace-party-name">DHG Pharma</span>
+                <span id="party-mfg-addr" class="trace-party-addr">0x2222...2222</span>
+              </div>
+
+              <div class="trace-party-box">
+                <span class="trace-party-role">Đơn vị nhập khẩu</span>
+                <span id="party-imp-name" class="trace-party-name">Vinapharm</span>
+                <span id="party-imp-addr" class="trace-party-addr">0x4444...4444</span>
+              </div>
+
+              <div class="trace-party-box">
+                <span class="trace-party-role">Bên nhận / Nhà máy</span>
+                <span id="party-rec-name" class="trace-party-name">Delta Pharma</span>
+                <span id="party-rec-addr" class="trace-party-addr">0x5555...5555</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fixed Static QR Code Container -->
+          <div class="trace-qr-box">
+            <div class="qr-canvas-wrapper">
+              <canvas id="trace-qr-canvas"></canvas>
+            </div>
+            <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: var(--space-3);">
+              Mã QR định danh cố định theo Batch ID
+            </div>
+            <div class="qr-actions-row">
+              <button id="btn-download-qr" class="btn btn-outline btn-sm">
+                Tải ảnh QR
+              </button>
+              <button id="btn-copy-trace-link" class="btn btn-primary btn-sm">
+                Sao chép link
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Vertical Timeline -->
+        <div style="margin-bottom: var(--space-4);">
+          <h3 style="color: var(--color-primary-dark); margin-bottom: var(--space-1);">Lịch sử Hành trình On-Chain</h3>
+          <p class="text-muted" style="font-size: var(--font-size-sm); margin: 0;">
+            Chuỗi các sự kiện bất biến được ghi nhận theo từng bước bởi các thực thể có thẩm quyền.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div id="timeline-items-list">
+            <!-- Items rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Section: Document Integrity Verification (M10 Spec) -->
+        <div id="document-verification-section" class="verification-card">
+          <div class="verification-heading">
+            <div style="width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--color-primary); color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 style="margin: 0; color: var(--color-primary-dark);">Đối chiếu Tính toàn vẹn Hồ sơ (SHA-256)</h3>
+              <p class="text-muted" style="margin: 0; font-size: var(--font-size-xs);">
+                Tải file lên để tính mã băm trực tiếp trong trình duyệt và so khớp byte-level với sự kiện trên blockchain.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step Selection -->
+          <div class="form-group">
+            <label for="verify-event-select" class="form-label">Chọn bước hồ sơ muốn đối chiếu:</label>
+            <select id="verify-event-select" class="form-select">
+              <!-- Options filled dynamically -->
+            </select>
+          </div>
+
+          <!-- Drag & Drop Zone -->
+          <div id="verify-dropzone" class="dropzone-box" role="button" tabindex="0">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <div class="dropzone-title">Kéo & thả file hồ sơ vào đây, hoặc bấm để chọn file từ máy tính</div>
+            <div class="dropzone-desc">Hỗ trợ các file văn bản, PDF, COA, biên bản... (Thử nghiệm với các file trong thư mục sample-docs/)</div>
+            <input type="file" id="verify-file-input" style="display: none;" />
+          </div>
+
+          <!-- Results Box -->
+          <div id="verify-result-box" class="verify-result-box"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <div id="app-footer-mount"></div>
+
+  <!-- Page Controller Script -->
+  <script type="module">
+    import { initTracePage } from './js/pages/trace.page.js';
+    initTracePage();
+  </script>
+</body>
+</html>
+

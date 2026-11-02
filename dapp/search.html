@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tra cứu lô nguyên liệu - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/search.css">
+</head>
+<body data-page="search">
+  <!-- Dev Bar for Mock Testing -->
+  <div id="dev-bar-mount"></div>
+
+  <!-- Global Header Navigation -->
+  <div id="app-navbar-mount"></div>
+
+  <main>
+    <!-- Search Hero & Input -->
+    <section class="search-hero">
+      <div class="container">
+        <h1 class="search-title">Tra cứu Lô nguyên liệu</h1>
+        <p class="text-lead" style="margin-bottom: 0;">
+          Tìm kiếm thông tin theo <strong>Số hiệu lô (Batch No)</strong>, <strong>Mã lô (Batch ID)</strong>, <strong>Tên hoạt chất</strong> hoặc <strong>Mã băm SHA-256</strong>.
+        </p>
+
+        <!-- Search Box Card -->
+        <div class="search-box-card">
+          <div class="search-input-group">
+            <div class="search-input-wrapper">
+              <span class="search-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="search-input"
+                class="search-input-field"
+                placeholder="Nhập số lô (vd: PEN-K-20260901-001) hoặc tên nguyên liệu..."
+                autocomplete="off"
+              />
+            </div>
+            <button id="btn-search" class="btn btn-primary btn-lg">
+              Tìm kiếm
+            </button>
+          </div>
+
+          <!-- Quick Suggestion Chips -->
+          <div class="search-chips-container">
+            <span class="chip-label">Lô mẫu thử nghiệm:</span>
+            <a href="#" class="search-chip" data-query="PEN-K-20260901-001">PEN-K-20260901-001 (Released)</a>
+            <a href="#" class="search-chip" data-query="AMO-C-20260905-002">AMO-C-20260905-002 (Registered)</a>
+            <a href="#" class="search-chip" data-query="PAR-S-20260910-003">PAR-S-20260910-003 (Tested)</a>
+            <a href="#" class="search-chip" data-query="MET-X-20260912-004">MET-X-20260912-004 (Rejected)</a>
+            <a href="#" class="search-chip" data-query="CEF-D-20260915-005">CEF-D-20260915-005 (Imported)</a>
+            <a href="#" class="search-chip" data-query="AZI-M-20260918-006">AZI-M-20260918-006 (InTransfer)</a>
+            <a href="#" class="search-chip" data-query="IBU-E-20240101-009">IBU-E-20240101-009 (Hết hạn)</a>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-status="all">Tất cả trạng thái</button>
+          <button class="filter-tab" data-status="1">Đã đăng ký (Registered)</button>
+          <button class="filter-tab" data-status="2">Đã kiểm nghiệm (Tested)</button>
+          <button class="filter-tab" data-status="4">Đã nhập khẩu (Imported)</button>
+          <button class="filter-tab" data-status="5">Đang chuyển giao (InTransfer)</button>
+          <button class="filter-tab" data-status="6">Đã tiếp nhận (Received)</button>
+          <button class="filter-tab" data-status="7">Được giải phóng (Released)</button>
+          <button class="filter-tab" data-status="8">Biệt trữ (Quarantined)</button>
+          <button class="filter-tab" data-status="3">Từ chối (Rejected)</button>
+        </div>
+
+        <!-- Results List Section -->
+        <div class="results-header">
+          <span class="results-count" id="results-count">Đang nạp danh sách lô...</span>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="search-loading" style="text-align: center; padding: var(--space-12) 0;">
+          <p class="text-muted">Đang truy vấn dữ liệu từ sổ cái Blockchain...</p>
+        </div>
+
+        <!-- Batches Grid -->
+        <div id="search-results-grid" class="batch-card-grid"></div>
+
+        <!-- Empty State -->
+        <div id="search-empty" class="search-empty-state" style="display: none;">
+          <div class="search-empty-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h3 style="margin-bottom: var(--space-2);">Không tìm thấy lô nguyên liệu phù hợp</h3>
+          <p class="text-muted" style="margin: 0 auto; max-width: 45ch;">
+            Vui lòng kiểm tra lại số hiệu lô, thử từ khóa khác hoặc bấm vào các lô mẫu gợi ý phía trên.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <div id="app-footer-mount"></div>
+
+  <!-- Page Controller Script -->
+  <script type="module">
+    import { initSearchPage } from './js/pages/search.page.js';
+    initSearchPage();
+  </script>
+</body>
+</html>
+

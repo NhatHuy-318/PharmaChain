@@ -1,0 +1,168 @@
+[
+  {
+    "batchId": 1,
+    "eventName": "BatchRegistered",
+    "step": 1,
+    "stepLabel": "Bước 1: Đăng ký lô sản xuất",
+    "actor": "0x2222222222222222222222222222222222222222",
+    "actorRole": "Manufacturer",
+    "orgName": "Dược Hậu Giang Pharma",
+    "timestamp": 1788220800,
+    "blockNumber": 5012301,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000001",
+    "docHash": "0x59857645f9d131d4d760bbba4f3550197ce89826a4160b4f17753c981ac7da6d",
+    "docName": "COA_PEN-K-20260901-001.txt",
+    "docType": "Giấy chứng nhận phân tích (COA)",
+    "fields": {
+      "batchNo": "PEN-K-20260901-001",
+      "materialName": "Penicillin G potassium",
+      "mfgDate": 1788220800,
+      "expiryDate": 1882915200,
+      "storageConditions": "Nơi khô mát, dưới 25°C, tránh ánh sáng trực tiếp",
+      "importer": "0x4444444444444444444444444444444444444444"
+    }
+  },
+  {
+    "batchId": 1,
+    "eventName": "BatchTested",
+    "step": 2,
+    "stepLabel": "Bước 2: Kiểm nghiệm xuất xưởng",
+    "actor": "0x3333333333333333333333333333333333333333",
+    "actorRole": "Inspector",
+    "orgName": "Viện Kiểm nghiệm Thuốc TP.HCM",
+    "timestamp": 1788597000,
+    "blockNumber": 5013450,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000002",
+    "docHash": "0x9c445de103be107c5d6d800c97a573b83d68aded8a1d1e70f48c27d1ad9aaa46",
+    "docName": "PhieuKiemNghiem_KN-0932.txt",
+    "docType": "Phiếu kiểm nghiệm xuất xưởng",
+    "fields": {
+      "passed": true,
+      "reportNo": "KN-0932",
+      "testDate": 1788597000
+    }
+  },
+  {
+    "batchId": 1,
+    "eventName": "BatchImported",
+    "step": 3,
+    "stepLabel": "Bước 3: Nhập khẩu & Hải quan",
+    "actor": "0x4444444444444444444444444444444444444444",
+    "actorRole": "Importer",
+    "orgName": "Tổng Công ty Dược Việt Nam - Vinapharm",
+    "timestamp": 1789480800,
+    "blockNumber": 5015890,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000003",
+    "docHash": "0xe3a3830c734da038244cc5ac9b76e5e3b6e713407e8e2b7906055892b41577e4",
+    "docName": "ToKhaiHaiQuan_HQ-2026-9981.txt",
+    "docType": "Tờ khai hải quan nhập khẩu thông quan",
+    "fields": {
+      "originCountry": "Ấn Độ (India)",
+      "customsDeclNo": "HQ-2026-9981",
+      "importDate": 1789480800
+    }
+  },
+  {
+    "batchId": 1,
+    "eventName": "TransferInitiated",
+    "step": 4,
+    "stepLabel": "Bước 4: Khởi tạo chuyển giao",
+    "actor": "0x4444444444444444444444444444444444444444",
+    "actorRole": "Importer",
+    "orgName": "Tổng Công ty Dược Việt Nam - Vinapharm",
+    "timestamp": 1789898400,
+    "blockNumber": 5018200,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000004",
+    "docHash": "0x173fbb32718aa453999eac241cf7fa31ee694b6c90c829262bcae0a5b6a315e6",
+    "docName": "PhieuGiaoHang_DEL-7782.txt",
+    "docType": "Phiếu giao hàng & Vận đơn",
+    "fields": {
+      "from": "0x4444444444444444444444444444444444444444",
+      "to": "0x5555555555555555555555555555555555555555",
+      "receiverOrg": "Nhà máy Dược phẩm Delta"
+    }
+  },
+  {
+    "batchId": 1,
+    "eventName": "TransferConfirmed",
+    "step": 5,
+    "stepLabel": "Bước 5: Xác nhận tiếp nhận hàng",
+    "actor": "0x5555555555555555555555555555555555555555",
+    "actorRole": "Receiver",
+    "orgName": "Nhà máy Dược phẩm Delta",
+    "timestamp": 1790075700,
+    "blockNumber": 5019800,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000005",
+    "docHash": "0x80f679ea08f9adec3cda6a2ff9accc12ee1f1263e13fd3b30c0c1a1077a567e9",
+    "docName": "BienBanNhanHang_REC-5512.txt",
+    "docType": "Biên bản tiếp nhận vật tư & Kiểm đếm",
+    "fields": {
+      "receiver": "0x5555555555555555555555555555555555555555"
+    }
+  },
+  {
+    "batchId": 1,
+    "eventName": "ReceivingInspected",
+    "step": 6,
+    "stepLabel": "Bước 6: Kiểm tra chất lượng tại nơi nhận",
+    "actor": "0x5555555555555555555555555555555555555555",
+    "actorRole": "Receiver",
+    "orgName": "Nhà máy Dược phẩm Delta",
+    "timestamp": 1790264700,
+    "blockNumber": 5021200,
+    "txHash": "0x1111000000000000000000000000000000000000000000000000000000000006",
+    "docHash": "0xcba90d3614f58bbf3c2e073f917fd1e1cb213a121ece25e53bef8855c5072c0a",
+    "docName": "PhieuKiemTraQC_QC-DELTA-0457.txt",
+    "docType": "Phiếu kiểm tra QC xuất xưởng giải phóng",
+    "fields": {
+      "passed": true,
+      "reportNo": "QC-DELTA-0457",
+      "inspectDate": 1790264700,
+      "finalStatus": "Released"
+    }
+  },
+  {
+    "batchId": 2,
+    "eventName": "BatchRegistered",
+    "step": 1,
+    "stepLabel": "Bước 1: Đăng ký lô sản xuất",
+    "actor": "0x2222222222222222222222222222222222222222",
+    "actorRole": "Manufacturer",
+    "orgName": "Dược Hậu Giang Pharma",
+    "timestamp": 1788566400,
+    "blockNumber": 5013000,
+    "txHash": "0x2222000000000000000000000000000000000000000000000000000000000001",
+    "docHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "docName": "COA_AMO-C-20260905-002.txt",
+    "docType": "Giấy chứng nhận phân tích (COA)",
+    "fields": {
+      "batchNo": "AMO-C-20260905-002",
+      "materialName": "Amoxicillin trihydrate compact",
+      "mfgDate": 1788566400,
+      "expiryDate": 1883260800,
+      "storageConditions": "Nhiệt độ dưới 30°C, độ ẩm dưới 75%",
+      "importer": "0x4444444444444444444444444444444444444444"
+    }
+  },
+  {
+    "batchId": 4,
+    "eventName": "BatchTested",
+    "step": 2,
+    "stepLabel": "Bước 2: Kiểm nghiệm xuất xưởng (Rejected)",
+    "actor": "0x3333333333333333333333333333333333333333",
+    "actorRole": "Inspector",
+    "orgName": "Viện Kiểm nghiệm Thuốc TP.HCM",
+    "timestamp": 1789200000,
+    "blockNumber": 5014800,
+    "txHash": "0x4444000000000000000000000000000000000000000000000000000000000002",
+    "docHash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "docName": "PhieuKiemNghiem_Fail.txt",
+    "docType": "Phiếu kiểm nghiệm không đạt",
+    "fields": {
+      "passed": false,
+      "reportNo": "KN-FAIL-882",
+      "testDate": 1789200000
+    }
+  }
+]
+

@@ -1,0 +1,17 @@
+NHÀ MÁY DƯỢC PHẨM DELTA
+------------------------------------------------------------
+BIÊN BẢN TIẾP NHẬN VẬT TƯ & KIỂM ĐẾM SƠ BỘ
+Số biên bản: REC-5512
+Ngày tiếp nhận: 22/09/2026
+
+- Đơn vị tiếp nhận: Nhà máy Dược phẩm Delta
+- Nơi nhận: Kho nguyên liệu đạt chuẩn GSP, KCN Tân Bình, TP.HCM
+- Số lô tiếp nhận: PEN-K-20260901-001
+- Số lượng thực nhận: 20 thùng x 25 kg = 500 kg (Đúng và đủ)
+- Tình trạng bao bì bên ngoài: Thùng carton nguyên vẹn, niêm phong chì không đứt gãy, nhãn mác rõ ràng.
+- Nhiệt độ lúc tiếp nhận: 21.5°C (ĐẠT yêu cầu bảo quản dưới 25°C).
+
+KẾT LUẬN: Đã nhận đủ hàng vào kho cách ly chờ kiểm tra chất lượng đầu vào.
+THỦ KHO & ĐẠI DIỆN TIẾP NHẬN
+(Đã gọi hàm confirmTransfer trên smart contract BatchRegistry)
+

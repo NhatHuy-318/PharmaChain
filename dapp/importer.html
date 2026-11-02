@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Nhập khẩu (Importer) - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/role-portal.css">
+</head>
+<body data-page="importer">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container" id="role-guard-mount">
+      <!-- Portal Header -->
+      <section class="portal-header">
+        <div class="portal-title-row">
+          <div>
+            <h1 class="portal-title">Cổng Nhập khẩu (Importer Portal)</h1>
+            <p class="text-lead" style="margin: 0;">
+              Tiếp nhận lô nguyên liệu đã kiểm nghiệm, thực hiện nhập khẩu và khởi tạo quy trình chuyển giao tới đơn vị nhận hàng.
+            </p>
+          </div>
+          <span class="badge badge-role-importer" style="font-size: 13px; padding: 6px 14px;">
+            Đơn vị nhập khẩu
+          </span>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <div class="portal-tabs">
+        <button class="portal-tab-btn active" data-tab="import">
+          Bước 3: Nhập khẩu lô
+          <span id="import-badge" class="badge badge-count" style="margin-left: 6px;"></span>
+        </button>
+        <button class="portal-tab-btn" data-tab="transfer">
+          Bước 4: Chuyển giao hàng
+          <span id="transfer-badge" class="badge badge-count" style="margin-left: 6px;"></span>
+        </button>
+        <button class="portal-tab-btn" data-tab="monitor">
+          Theo dõi lô của tôi
+        </button>
+      </div>
+
+      <!-- Tab: Import -->
+      <div class="portal-tab-panel active" data-panel="import">
+        <!-- Queue: Lô cần nhập khẩu -->
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Hàng đợi nhập khẩu (Trạng thái: Tested)</h3>
+            <span class="badge badge-status-tested">Chờ nhập khẩu</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày sản xuất</th>
+                  <th>Hạn dùng</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="import-queue-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu từ sổ cái...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Form: Bước 3 - Nhập khẩu lô -->
+        <div id="importer-import-card" class="form-card" style="margin-top: var(--space-6);">
+          <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+            <div>
+              <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 3: Khai báo Nhập khẩu</h3>
+              <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+                Ghi nhận thông tin hải quan và tải lên Tờ khai Hải quan; mã băm được lưu on-chain.
+              </p>
+            </div>
+            <span class="badge badge-status-imported">Trạng thái đích: Imported</span>
+          </div>
+
+          <form id="importer-import-form">
+            <!-- Hàng 1: Chọn lô & Quốc gia xuất xứ -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="import-batch-select" class="form-label">
+                  Lô hàng cần nhập khẩu <span class="required">*</span>
+                </label>
+                <select id="import-batch-select" class="form-select" required>
+                  <option value="">— Chọn lô hàng —</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="import-origin-country" class="form-label">
+                  Quốc gia xuất xứ (Origin Country) <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="import-origin-country"
+                  class="form-input"
+                  placeholder="vd: Ấn Độ / Đức / Trung Quốc"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Hàng 2: Số tờ khai HQ & Ngày nhập khẩu -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="import-customs-decl-no" class="form-label">
+                  Số tờ khai Hải quan <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="import-customs-decl-no"
+                  class="form-input text-mono"
+                  placeholder="vd: HQ-2026-9981"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="import-date" class="form-label">
+                  Ngày nhập khẩu <span class="required">*</span>
+                </label>
+                <input type="date" id="import-date" class="form-input" required />
+              </div>
+            </div>
+
+            <!-- Upload Tờ khai Hải quan -->
+            <div class="form-group">
+              <label class="form-label">
+                File Tờ khai Hải quan (Customs Declaration) <span class="required">*</span>
+              </label>
+              <div class="file-upload-zone" onclick="document.getElementById('import-customs-file').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="file-upload-info">Bấm để tải Tờ khai Hải quan (Hệ thống tính SHA-256 tức thì)</div>
+                <input type="file" id="import-customs-file" style="display: none;" required />
+              </div>
+              <div id="import-hash-preview" class="file-hash-preview"></div>
+            </div>
+
+            <button type="submit" id="btn-submit-import" class="btn btn-primary btn-lg" style="width: 100%;">
+              Ghi nhận nhập khẩu lên Blockchain
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Transfer -->
+      <div class="portal-tab-panel" data-panel="transfer" style="display: none;">
+        <!-- Queue: Lô đã nhập khẩu cần chuyển giao -->
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Danh sách lô sẵn sàng chuyển giao / đang chuyển giao</h3>
+            <span class="badge badge-status-imported">Imported / InTransfer</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Receiver</th>
+                  <th>Hạn dùng</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="transfer-queue-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Form: Bước 4 - Khởi tạo chuyển giao -->
+        <div id="importer-transfer-card" class="form-card" style="margin-top: var(--space-6);">
+          <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+            <div>
+              <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 4: Khởi tạo Chuyển giao</h3>
+              <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+                Chỉ định đơn vị nhận hàng và tải Phiếu giao hàng; mã băm SHA-256 lưu on-chain.
+              </p>
+            </div>
+            <span class="badge badge-status-intransfer">Trạng thái đích: InTransfer</span>
+          </div>
+
+          <form id="importer-transfer-form">
+            <!-- Hàng 1: Chọn lô & Receiver -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="transfer-batch-select" class="form-label">
+                  Lô hàng cần chuyển giao <span class="required">*</span>
+                </label>
+                <select id="transfer-batch-select" class="form-select" required>
+                  <option value="">— Chọn lô hàng —</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="transfer-receiver-select" class="form-label">
+                  Đơn vị nhận hàng (Receiver) <span class="required">*</span>
+                </label>
+                <select id="transfer-receiver-select" class="form-select" required>
+                  <option value="">— Chọn Receiver —</option>
+                </select>
+                <span class="form-hint">Chỉ hiển thị các tổ chức có vai trò Receiver đã đăng ký trên hệ thống.</span>
+              </div>
+            </div>
+
+            <!-- Upload Phiếu giao hàng -->
+            <div class="form-group">
+              <label class="form-label">
+                File Phiếu giao hàng (Delivery Note) <span class="required">*</span>
+              </label>
+              <div class="file-upload-zone" onclick="document.getElementById('transfer-delivery-file').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="file-upload-info">Bấm để tải Phiếu giao hàng (Hệ thống tính SHA-256 tức thì)</div>
+                <input type="file" id="transfer-delivery-file" style="display: none;" required />
+              </div>
+              <div id="transfer-hash-preview" class="file-hash-preview"></div>
+            </div>
+
+            <div class="alert alert-info" style="margin-bottom: var(--space-4);">
+              <strong>ℹ Lưu ý:</strong> Sau khi khởi tạo chuyển giao, bạn có thể <strong>hủy chuyển giao</strong> 
+              (nếu hàng chưa đến nơi) để đưa lô về trạng thái Imported và thực hiện lại. 
+              Dùng nút <strong>"Hủy chuyển giao"</strong> trong bảng danh sách bên trên.
+            </div>
+
+            <button type="submit" id="btn-submit-transfer" class="btn btn-primary btn-lg" style="width: 100%;">
+              Khởi tạo chuyển giao hàng
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Monitor -->
+      <div class="portal-tab-panel" data-panel="monitor" style="display: none;">
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Tất cả lô hàng của tôi</h3>
+            <span class="badge badge-role">Lịch sử nhập khẩu</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Receiver</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="my-batches-table-body">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initImporterPage } from './js/pages/importer.page.js';
+    initImporterPage();
+  </script>
+</body>
+</html>
+

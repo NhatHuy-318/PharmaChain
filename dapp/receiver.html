@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Đơn vị nhận hàng (Receiver) - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/role-portal.css">
+</head>
+<body data-page="receiver">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container" id="role-guard-mount">
+      <!-- Portal Header -->
+      <section class="portal-header">
+        <div class="portal-title-row">
+          <div>
+            <h1 class="portal-title">Cổng Đơn vị nhận hàng (Receiver Portal)</h1>
+            <p class="text-lead" style="margin: 0;">
+              Xác nhận tiếp nhận lô nguyên liệu và thực hiện kiểm tra chất lượng tại nơi nhận (QC) để phát hành hoặc cách ly lô hàng.
+            </p>
+          </div>
+          <span class="badge badge-role-receiver" style="font-size: 13px; padding: 6px 14px;">
+            Đơn vị nhận hàng
+          </span>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <div class="portal-tabs">
+        <button class="portal-tab-btn active" data-tab="receive">
+          Bước 5: Tiếp nhận hàng
+          <span id="receive-badge" class="badge badge-count" style="margin-left: 6px;"></span>
+        </button>
+        <button class="portal-tab-btn" data-tab="qc">
+          Bước 6: Kiểm tra QC tại chỗ
+          <span id="qc-badge" class="badge badge-count" style="margin-left: 6px;"></span>
+        </button>
+        <button class="portal-tab-btn" data-tab="history">
+          Lịch sử tiếp nhận
+        </button>
+      </div>
+
+      <!-- Tab 1: Receive (Bước 5) -->
+      <div class="portal-tab-panel active" data-panel="receive">
+        <!-- Queue: Lô đang vận chuyển tới -->
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Hàng đợi tiếp nhận (Trạng thái: InTransfer)</h3>
+            <span class="badge badge-status-intransfer">Đang vận chuyển</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Importer</th>
+                  <th>Hạn dùng</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="receive-queue-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu từ sổ cái...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Form: Bước 5 - Tiếp nhận hàng -->
+        <div id="receiver-confirm-card" class="form-card" style="margin-top: var(--space-6);">
+          <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+            <div>
+              <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 5: Xác nhận Tiếp nhận lô hàng</h3>
+              <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+                Tải lên Biên bản nhận hàng để băm SHA-256 ghi nhận lên Smart Contract.
+              </p>
+            </div>
+            <span class="badge badge-status-received">Trạng thái đích: Received</span>
+          </div>
+
+          <form id="receiver-confirm-form">
+            <!-- Hàng 1: Chọn lô -->
+            <div class="form-group">
+              <label for="confirm-batch-select" class="form-label">
+                Lô hàng cần tiếp nhận <span class="required">*</span>
+              </label>
+              <select id="confirm-batch-select" class="form-select" required>
+                <option value="">— Chọn lô hàng —</option>
+              </select>
+              <span class="form-hint">Theo quy tắc vận hành, thao tác tiếp nhận vẫn được phép ghi nhận ngay cả khi lô đã cận hoặc quá hạn sử dụng (hàng đã đến nơi thực tế).</span>
+            </div>
+
+            <!-- Hàng 2: Người nhận & Ghi chú tiếp nhận -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="confirm-recipient-name" class="form-label">Họ tên người nhận hàng / Thủ kho</label>
+                <input
+                  type="text"
+                  id="confirm-recipient-name"
+                  class="form-input"
+                  placeholder="vd: Nguyễn Văn A (Phòng Kho vận)"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-notes" class="form-label">Ghi chú tình trạng khi nhận</label>
+                <input
+                  type="text"
+                  id="confirm-notes"
+                  class="form-input"
+                  placeholder="vd: Bao bì nguyên vẹn, niêm phong chì đầy đủ"
+                />
+              </div>
+            </div>
+
+            <!-- Upload Biên bản nhận hàng -->
+            <div class="form-group">
+              <label class="form-label">
+                File Biên bản nhận hàng (Acceptance Protocol / Receipt) <span class="required">*</span>
+              </label>
+              <div class="file-upload-zone" onclick="document.getElementById('confirm-receipt-file').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="file-upload-info">Bấm để tải Biên bản nhận hàng (Hệ thống tính SHA-256 tức thì)</div>
+                <input type="file" id="confirm-receipt-file" style="display: none;" required />
+              </div>
+              <div id="confirm-hash-preview" class="file-hash-preview"></div>
+            </div>
+
+            <button type="submit" id="btn-submit-confirm" class="btn btn-primary btn-lg" style="width: 100%;">
+              Xác nhận tiếp nhận lô hàng
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab 2: QC (Bước 6) -->
+      <div class="portal-tab-panel" data-panel="qc" style="display: none;">
+        <!-- Queue: Lô chờ kiểm tra QC -->
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Hàng đợi kiểm tra QC (Trạng thái: Received)</h3>
+            <span class="badge badge-status-received">Chờ kiểm tra QC</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Importer</th>
+                  <th>Hạn dùng</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="qc-queue-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Form: Bước 6 - Kiểm tra QC -->
+        <div id="receiver-qc-card" class="form-card" style="margin-top: var(--space-6);">
+          <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+            <div>
+              <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 6: Kiểm tra QC tại Nơi nhận</h3>
+              <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+                Quyết định nghiệm thu: ĐẠT đưa vào sản xuất (Released) hoặc KHÔNG ĐẠT để cách ly (Quarantined).
+              </p>
+            </div>
+            <div style="display: flex; gap: var(--space-2);">
+              <span class="badge badge-status-released">Released</span>
+              <span class="badge badge-status-quarantined">Quarantined</span>
+            </div>
+          </div>
+
+          <form id="receiver-qc-form">
+            <!-- Hàng 1: Chọn lô & Quyết định QC -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="qc-batch-select" class="form-label">
+                  Lô hàng cần thẩm định QC <span class="required">*</span>
+                </label>
+                <select id="qc-batch-select" class="form-select" required>
+                  <option value="">— Chọn lô hàng —</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="qc-decision" class="form-label">
+                  Kết luận QC tại chỗ <span class="required">*</span>
+                </label>
+                <select id="qc-decision" class="form-select" required>
+                  <option value="">— Chọn kết luận thẩm định —</option>
+                  <option value="true">✅ ĐẠT YÊU CẦU &rarr; Phát hành sản xuất (Released)</option>
+                  <option value="false">❌ KHÔNG ĐẠT &rarr; Cách ly / Biệt trữ (Quarantined)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Hàng 2: Số phiếu QC & Ngày kiểm tra -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="qc-report-no" class="form-label">
+                  Số hiệu phiếu kiểm nghiệm QC <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="qc-report-no"
+                  class="form-input text-mono"
+                  placeholder="vd: QC-DELTA-0457"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="qc-inspect-date" class="form-label">
+                  Ngày thẩm định QC <span class="required">*</span>
+                </label>
+                <input type="date" id="qc-inspect-date" class="form-input" required />
+              </div>
+            </div>
+
+            <!-- Hàng 3: Ghi chú kết quả -->
+            <div class="form-group">
+              <label for="qc-notes" class="form-label">Ghi chú chi tiết kết quả thẩm định</label>
+              <input
+                type="text"
+                id="qc-notes"
+                class="form-input"
+                placeholder="vd: Cảm quan bột tinh thể trắng, định lượng hoạt chất 99.8%"
+              />
+            </div>
+
+            <!-- Upload Phiếu QC -->
+            <div class="form-group">
+              <label class="form-label">
+                File Phiếu kiểm tra QC (Inspection Sheet / Report) <span class="required">*</span>
+              </label>
+              <div class="file-upload-zone" onclick="document.getElementById('qc-report-file').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="file-upload-info">Bấm để tải Phiếu kiểm tra QC (Hệ thống tính SHA-256 tức thì)</div>
+                <input type="file" id="qc-report-file" style="display: none;" required />
+              </div>
+              <div id="qc-hash-preview" class="file-hash-preview"></div>
+            </div>
+
+            <div class="alert alert-warning" style="margin-bottom: var(--space-4);">
+              <strong>⚠ Lưu ý quan trọng:</strong> Đây là bước kết luận trạng thái chung cuộc (Terminal State) 
+              của toàn bộ vòng đời lô nguyên liệu. Kết quả được ghi nhận <strong>1 lần duy nhất</strong> 
+              và không thể thay đổi sau khi xác nhận trên Blockchain.
+            </div>
+
+            <button type="submit" id="btn-submit-qc" class="btn btn-primary btn-lg" style="width: 100%;">
+              Ghi nhận kết quả QC lên Blockchain
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab 3: History -->
+      <div class="portal-tab-panel" data-panel="history" style="display: none;">
+        <div class="queue-card">
+          <div class="queue-card-header">
+            <h3 class="queue-card-title">Tất cả lô hàng đã nhận (Lịch sử tiếp nhận & QC)</h3>
+            <span class="badge badge-role">Nhật ký tiếp nhận</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Batch ID</th>
+                  <th>Số hiệu lô</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Trạng thái</th>
+                  <th>Importer</th>
+                  <th style="text-align: right;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="receiver-history-table-body">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: var(--color-text-muted);">
+                    Đang nạp dữ liệu...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initReceiverPage } from './js/pages/receiver.page.js';
+    initReceiverPage();
+  </script>
+</body>
+</html>
+

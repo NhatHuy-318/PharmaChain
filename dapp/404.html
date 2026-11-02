@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Không tìm thấy trang | PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <style>
+    .not-found-container {
+      padding: var(--space-16) 0;
+      text-align: center;
+    }
+    .not-found-code {
+      font-size: 5rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+    }
+  </style>
+</head>
+<body data-page="404">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main>
+    <div class="container not-found-container">
+      <div class="not-found-code">404</div>
+      <h2 style="margin-bottom: var(--space-3);">Không tìm thấy trang yêu cầu</h2>
+      <p class="text-lead" style="margin: 0 auto var(--space-8);">
+        Trang bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang địa chỉ mới trên PharmaChain.
+      </p>
+      <a href="index.html" class="btn btn-primary btn-lg">
+        Về trang chủ PharmaChain
+      </a>
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initApp } from './js/main.js';
+    initApp('404');
+  </script>
+</body>
+</html>
+

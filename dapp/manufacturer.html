@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Nhà sản xuất (Manufacturer) - PharmaChain</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/dev-bar.css">
+  <link rel="stylesheet" href="css/pages/role-portal.css">
+</head>
+<body data-page="manufacturer">
+  <div id="dev-bar-mount"></div>
+  <div id="app-navbar-mount"></div>
+
+  <main class="page-wrapper">
+    <div class="container" id="role-guard-mount">
+      <!-- Portal Header -->
+      <section class="portal-header">
+        <div class="portal-title-row">
+          <div>
+            <h1 class="portal-title">Cổng Nhà sản xuất (Manufacturer Portal)</h1>
+            <p class="text-lead" style="margin: 0;">
+              Khởi tạo hồ sơ lô nguyên liệu dược phẩm, băm tài liệu COA gốc và chỉ định đơn vị nhập khẩu.
+            </p>
+          </div>
+          <span class="badge badge-role-manufacturer" style="font-size: 13px; padding: 6px 14px;">
+            Nhà sản xuất nguyên liệu
+          </span>
+        </div>
+      </section>
+
+      <!-- Step 1 Form Card -->
+      <div class="form-card">
+        <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+          <div>
+            <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 1: Đăng ký Lô nguyên liệu mới</h3>
+            <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
+              Dữ liệu cốt lõi sẽ được ghi nhận vào Smart Contract; siêu dữ liệu mở rộng lưu trữ off-chain.
+            </p>
+          </div>
+          <span class="badge badge-status-registered">Trạng thái đích: Registered</span>
+        </div>
+
+        <form id="mfg-register-form">
+          <!-- Hàng 1: Số lô & Tên nguyên liệu -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="mfg-batch-no" class="form-label">
+                Số hiệu lô (Batch No) <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="mfg-batch-no"
+                class="form-input text-mono"
+                placeholder="vd: PEN-K-20261102-001"
+                required
+              />
+              <span class="form-hint">Tối đa 32 ký tự, chỉ gồm A-Z, 0-9 và - _ / .</span>
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-material-name" class="form-label">
+                Tên nguyên liệu / Hoạt chất <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="mfg-material-name"
+                class="form-input"
+                placeholder="vd: Penicillin G potassium"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Hàng 2: Ngày sản xuất & Hạn dùng & Đơn vị nhập khẩu -->
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label for="mfg-date" class="form-label">
+                Ngày sản xuất (Mfg Date) <span class="required">*</span>
+              </label>
+              <input type="date" id="mfg-date" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-expiry-date" class="form-label">
+                Hạn sử dụng (Expiry Date) <span class="required">*</span>
+              </label>
+              <input type="date" id="mfg-expiry-date" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-importer-select" class="form-label">
+                Đơn vị nhập khẩu (Importer) <span class="required">*</span>
+              </label>
+              <select id="mfg-importer-select" class="form-select" required>
+                <!-- Populated dynamically -->
+              </select>
+              <span class="form-hint">Bên nhận (Receiver) sẽ do Importer chỉ định ở Bước 4</span>
+            </div>
+          </div>
+
+          <!-- Hàng 3: Điều kiện bảo quản & Quốc gia sản xuất -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="mfg-storage" class="form-label">
+                Điều kiện bảo quản (Storage Conditions) <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="mfg-storage"
+                class="form-input"
+                placeholder="vd: Nơi khô mát, dưới 25°C, tránh ánh sáng trực tiếp"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-country" class="form-label">Quốc gia sản xuất</label>
+              <input type="text" id="mfg-country" class="form-input" placeholder="vd: Ấn Độ / Việt Nam" />
+            </div>
+          </div>
+
+          <!-- Hàng 4: Siêu dữ liệu off-chain (Khối lượng, số kiện, quy cách) -->
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label for="mfg-quantity" class="form-label">Tổng khối lượng</label>
+              <input type="number" id="mfg-quantity" class="form-input" placeholder="vd: 500" min="1" />
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-unit" class="form-label">Đơn vị đo</label>
+              <select id="mfg-unit" class="form-select">
+                <option value="kg">kg (Kilogram)</option>
+                <option value="tấn">Tấn</option>
+                <option value="thùng">Thùng</option>
+                <option value="bao">Bao</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mfg-package-count" class="form-label">Số kiện đóng gói</label>
+              <input type="number" id="mfg-package-count" class="form-input" placeholder="vd: 20" min="1" />
+            </div>
+          </div>
+
+          <!-- Hàng 5: Upload COA tự băm SHA-256 -->
+          <div class="form-group">
+            <label class="form-label">
+              File Giấy chứng nhận phân tích (COA / MSDS) <span class="required">*</span>
+            </label>
+            <div class="file-upload-zone" onclick="document.getElementById('mfg-coa-file').click()">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="margin: 0 auto;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <div class="file-upload-info">Bấm để tải file COA lên (Hệ thống tính mã băm SHA-256 tức thì)</div>
+              <input type="file" id="mfg-coa-file" style="display: none;" required />
+            </div>
+            <div id="mfg-coa-hash-preview" class="file-hash-preview"></div>
+          </div>
+
+          <button type="submit" id="btn-submit-batch" class="btn btn-primary btn-lg" style="width: 100%;">
+            Đăng ký lô nguyên liệu lên Blockchain
+          </button>
+        </form>
+      </div>
+
+      <!-- Section: My Batches Queue Table -->
+      <div class="queue-card">
+        <div class="queue-card-header">
+          <h3 class="queue-card-title">Danh sách Lô nguyên liệu của tôi (My Batches)</h3>
+          <span class="badge badge-role">Lịch sử xuất xưởng</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Batch ID</th>
+                <th>Số hiệu lô</th>
+                <th>Tên nguyên liệu</th>
+                <th>Trạng thái</th>
+                <th>Importer chỉ định</th>
+                <th>Hạn dùng</th>
+                <th style="text-align: right;">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="mfg-batches-table-body">
+              <tr>
+                <td colspan="7" style="text-align: center; color: var(--color-text-muted);">
+                  Đang nạp dữ liệu từ sổ cái...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="app-footer-mount"></div>
+
+  <script type="module">
+    import { initManufacturerPage } from './js/pages/manufacturer.page.js';
+    initManufacturerPage();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+TỔNG CỤC HẢI QUAN - HẢI QUAN CỬA KHẨU CẢNG CÁT LÁI
+------------------------------------------------------------
+TỜ KHAI HÀNG HÓA NHẬP KHẨU THÔNG QUAN
+Số tờ khai: HQ-2026-9981
+Ngày đăng ký & thông quan: 15/09/2026
+
+- Đơn vị nhập khẩu: Tổng Công ty Dược Việt Nam - Vinapharm
+- Địa chỉ ví Importer: 0x4444444444444444444444444444444444444444
+- Nước xuất xứ: Ấn Độ (India)
+- Tên hàng: Nguyên liệu dược dụng Penicillin G potassium
+- Số lô sản xuất: PEN-K-20260901-001
+- Số lượng thông quan: 20 thùng (500 kg)
+- Tình trạng niêm phong hải quan: Nguyên đai nguyên kiện, đạt kiểm tra thực tế hàng hóa.
+
+CÁN BỘ TIẾP NHẬN & PHÊ DUYỆT THÔNG QUAN
+(Xác nhận điện tử qua PharmaChain)
+

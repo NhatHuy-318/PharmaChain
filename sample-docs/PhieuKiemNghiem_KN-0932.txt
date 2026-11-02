@@ -1,0 +1,21 @@
+BỘ Y TẾ - VIỆN KIỂM NGHIỆM THUỐC TP.HCM
+------------------------------------------------------------
+PHIẾU KIỂM NGHIỆM NGUYÊN LIỆU DƯỢC
+Số phiếu: KN-0932
+Ngày kiểm nghiệm: 05/09/2026
+
+- Đối tượng kiểm nghiệm: Penicillin G potassium
+- Số lô kiểm nghiệm: PEN-K-20260901-001
+- Nơi gửi mẫu: Dược Hậu Giang Pharma
+- Tiêu chuẩn áp dụng: Dược điển Việt Nam V (DĐVN V)
+- Phương pháp: HPLC quang phổ hồng ngoại (IR), chuẩn độ thể tích
+- Kết quả kiểm định:
+  + Cảm quan: ĐẠT
+  + Định tính: ĐẠT
+  + Hàm lượng hoạt chất: 99.2% (ĐẠT)
+  + Độ vô trùng: ĐẠT tiêu chuẩn nguyên liệu pha tiêm
+
+KẾT LUẬN: ĐẠT TIÊU CHUẨN KIỂM NGHIỆM (PASSED).
+TRƯỞNG PHÒNG KIỂM NGHIỆM
+(Đã ký số và băm SHA-256 đưa lên Rootstock Testnet)
+

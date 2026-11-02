@@ -1,0 +1,28 @@
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập - Tự do - Hạnh phúc
+------------------------------------------------------------
+GIẤY CHỨNG NHẬN PHÂN TÍCH (CERTIFICATE OF ANALYSIS - COA)
+Số hồ sơ: COA-2026-DHG-0901
+Ngày phát hành: 01/09/2026
+
+1. THÔNG TIN LÔ HÀNG:
+- Tên nguyên liệu: Penicillin G potassium
+- Số lô (Batch No): PEN-K-20260901-001
+- Nhà sản xuất: Dược Hậu Giang Pharma
+- Ngày sản xuất: 01/09/2026
+- Hạn dùng: 01/09/2029
+- Quy cách đóng gói: 20 thùng x 25 kg (Tổng 500 kg)
+- Điều kiện bảo quản: Nơi khô mát, nhiệt độ dưới 25°C, tránh ánh sáng trực tiếp
+
+2. CHỈ TIÊU CHẤT LƯỢNG XUẤT XƯỞNG:
+- Cảm quan: Bột kết tinh trắng hoặc gần như trắng (ĐẠT)
+- Độ ẩm: 0.32% (Tiêu chuẩn: <= 1.0%)
+- Định tính: Đúng phản ứng ion Kali và phổ IR (ĐẠT)
+- Độ tinh khiết: 99.4% (Tiêu chuẩn: 98.0% - 101.0%)
+- Giới hạn tạp chất liên quan: 0.18% (Tiêu chuẩn: <= 0.5%)
+
+3. KẾT LUẬN: Lô nguyên liệu đạt tiêu chuẩn Dược điển Việt Nam V.
+------------------------------------------------------------
+TRƯỞNG PHÒNG ĐẢM BẢO CHẤT LƯỢNG (QA/QC)
+(Đã ký điện tử và lưu trữ mã băm SHA-256 trên PharmaChain)
+
