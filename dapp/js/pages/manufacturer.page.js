@@ -151,9 +151,19 @@ export async function initManufacturerPage() {
       const quantity = Number($('#mfg-quantity')?.value) || 0;
       const unit = $('#mfg-unit')?.value || 'kg';
       const packageCount = Number($('#mfg-package-count')?.value) || 0;
-      const packagingSpec = $('#mfg-packaging-spec')?.value.trim();
-      const countryOfOrigin = $('#mfg-country')?.value.trim();
-      const notes = $('#mfg-notes')?.value.trim();
+      const countryOfOrigin = $('#mfg-country')?.value.trim() || '';
+      const notes = $('#mfg-notes')?.value.trim() || '';
+
+      // P1 Optional fields (để null nếu không nhập)
+      const materialCode = $('#mfg-material-code')?.value.trim() || null;
+      const grade = $('#mfg-grade')?.value.trim() || null;
+      const pharmacopoeiaStandard = $('#mfg-standard')?.value.trim() || null;
+      const productSpecRef = $('#mfg-spec-ref')?.value.trim() || null;
+      const packageType = $('#mfg-package-type')?.value.trim() || null;
+      const sealNumber = $('#mfg-seal-number')?.value.trim() || null;
+      const netWeight = $('#mfg-net-weight')?.value ? Number($('#mfg-net-weight').value) : null;
+      const grossWeight = $('#mfg-gross-weight')?.value ? Number($('#mfg-gross-weight').value) : null;
+      const packagingSpec = packageType ? `${packageCount} ${packageType} x ${quantity ? Math.round(quantity/packageCount) : 0} ${unit}` : null;
 
       if (!isValidBatchNo(cleanBatchNo)) {
         showToast('Số lô chỉ gồm chữ in hoa (A-Z), số (0-9) và các ký tự: - _ / . (tối đa 32 ký tự).', 'error');
@@ -200,6 +210,15 @@ export async function initManufacturerPage() {
             countryOfOrigin,
             notes,
             manufacturerName: walletService.getOrgName() || 'Manufacturer',
+            materialCode,
+            grade,
+            pharmacopoeiaStandard,
+            productSpecRef,
+            packageType,
+            sealNumber,
+            netWeight,
+            grossWeight,
+            isMock: false,
           },
         });
 

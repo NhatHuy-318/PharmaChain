@@ -200,6 +200,36 @@
             />
           </div>
 
+          <!-- Nhóm thông tin kiểm nghiệm mở rộng (P1 Optional Metadata - lưu off-chain) -->
+          <details style="margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4); background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md);">
+            <summary style="font-weight: 600; color: var(--color-primary-dark); cursor: pointer; user-select: none;">
+              + Bổ sung thông tin kiểm nghiệm viên & mẫu thử (Tùy chọn)
+            </summary>
+            <div style="margin-top: var(--space-4);">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="test-sample-id" class="form-label">Mã số mẫu thử (Sample ID)</label>
+                  <input type="text" id="test-sample-id" class="form-input text-mono" placeholder="vd: SMP-PEN-0932" />
+                </div>
+                <div class="form-group">
+                  <label for="test-specification-ref" class="form-label">Tiêu chuẩn kiểm nghiệm đối chiếu</label>
+                  <input type="text" id="test-specification-ref" class="form-input" placeholder="vd: DĐVN V chuyên luận Penicillin" />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="test-analyst-name" class="form-label">Kiểm nghiệm viên thực hiện</label>
+                  <input type="text" id="test-analyst-name" class="form-input" placeholder="vd: Lê Thị Thảo (KTV)" />
+                </div>
+                <div class="form-group">
+                  <label for="test-reviewer-name" class="form-label">Người rà soát / Trưởng phòng</label>
+                  <input type="text" id="test-reviewer-name" class="form-input" placeholder="vd: ThS. Nguyễn Văn Bình" />
+                </div>
+              </div>
+            </div>
+          </details>
+
           <!-- Upload phiếu kiểm nghiệm -->
           <div class="form-group">
             <label class="form-label">

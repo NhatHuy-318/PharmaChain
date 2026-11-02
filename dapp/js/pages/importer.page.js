@@ -115,6 +115,9 @@ export async function initImporterPage() {
       const originCountry = $('#import-origin-country').value.trim();
       const customsDeclNo = $('#import-customs-decl-no').value.trim();
       const importDateVal = $('#import-date').value;
+      const importPort = $('#import-port')?.value.trim() || null;
+      const clearanceDateVal = $('#import-clearance-date')?.value;
+      const customsClearanceDate = clearanceDateVal ? Math.floor(new Date(clearanceDateVal).getTime() / 1000) : null;
 
       if (!originCountry || !customsDeclNo || !importDateVal) {
         showToast('Vui lòng điền đầy đủ thông tin nhập khẩu.', 'warning');
@@ -138,6 +141,10 @@ export async function initImporterPage() {
           importDate: importTimestamp,
           file: importSelectedFile,
           docHash: importDocHash,
+          metadata: {
+            importPort,
+            customsClearanceDate,
+          },
         });
 
         showToast(`✅ Đã ghi nhận nhập khẩu lô #${batchId} lên Blockchain!`, 'success');
@@ -168,6 +175,10 @@ export async function initImporterPage() {
 
       const batchId = parseInt($('#transfer-batch-select').value, 10);
       const receiverAddr = $('#transfer-receiver-select').value;
+      const carrierName = $('#transfer-carrier-name')?.value.trim() || null;
+      const trackingNumber = $('#transfer-tracking-no')?.value.trim() || null;
+      const transportTempRange = $('#transfer-temp-range')?.value.trim() || null;
+      const vehiclePlate = $('#transfer-vehicle-plate')?.value.trim() || null;
 
       if (!batchId) {
         showToast('Vui lòng chọn lô hàng cần chuyển giao.', 'warning');
@@ -187,6 +198,13 @@ export async function initImporterPage() {
           receiver: receiverAddr,
           file: transferSelectedFile,
           docHash: transferDocHash,
+          metadata: {
+            carrierName,
+            trackingNumber,
+            transportTempRange,
+            vehiclePlate,
+            dispatchDate: Math.floor(Date.now() / 1000),
+          },
         });
 
         showToast(`✅ Đã khởi tạo chuyển giao lô #${batchId} tới ${shortenAddress(receiverAddr)}!`, 'success');

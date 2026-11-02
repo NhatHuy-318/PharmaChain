@@ -114,7 +114,10 @@ export async function initReceiverPage() {
         return;
       }
 
-      const recipientName = $('#confirm-recipient-name')?.value.trim() || '';
+      const recipientName = $('#confirm-recipient-name')?.value.trim() || null;
+      const warehouseLocation = $('#confirm-warehouse-loc')?.value.trim() || null;
+      const sealStatus = $('#confirm-seal-status')?.value || null;
+      const actualReceivedQuantity = $('#confirm-actual-qty')?.value ? Number($('#confirm-actual-qty').value) : null;
       const confirmNotes = $('#confirm-notes')?.value.trim() || '';
 
       btn.disabled = true;
@@ -127,6 +130,9 @@ export async function initReceiverPage() {
           docHash: confirmDocHash,
           metadata: {
             recipientName,
+            warehouseLocation,
+            sealStatus,
+            actualReceivedQuantity,
             confirmNotes,
             receivedAt: Math.floor(Date.now() / 1000),
           },
@@ -188,6 +194,8 @@ export async function initReceiverPage() {
       }
 
       const notes = $('#qc-notes')?.value.trim() || '';
+      const acceptedQuantity = $('#qc-accepted-qty')?.value ? Number($('#qc-accepted-qty').value) : null;
+      const rejectedQuantity = $('#qc-rejected-qty')?.value ? Number($('#qc-rejected-qty').value) : null;
 
       const targetStatusName = passed ? 'Released (Thông quan / Xuất kho sản xuất)' : 'Quarantined (Cách ly / Trả hàng)';
       const statusColor = passed ? '#10B981' : '#EF4444';
@@ -223,6 +231,8 @@ export async function initReceiverPage() {
               docHash: qcDocHash,
               metadata: {
                 qcNotes: notes,
+                acceptedQuantity,
+                rejectedQuantity,
               },
             });
 

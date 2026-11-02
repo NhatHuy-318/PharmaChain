@@ -20,11 +20,10 @@ export function renderNavbar(activePage = 'home') {
   const isConnected = walletService.isWalletConnected();
   const isCorrectNet = walletService.isCorrectNetwork();
 
-  // Tạo navigation links
+  // Tạo navigation links: chỉ gồm Trang chủ và Tra cứu (Truy xuất được điều hướng từ Tra cứu hoặc quét QR)
   const navItems = [
     { id: 'home', href: 'index.html', label: i18n.nav.home },
     { id: 'search', href: 'search.html', label: i18n.nav.search },
-    { id: 'trace', href: 'trace.html', label: i18n.nav.trace },
   ];
 
   // Nếu đã kết nối và có role nghiệp vụ, bổ sung link portal tương ứng

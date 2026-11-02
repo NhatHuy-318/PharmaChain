@@ -37,8 +37,7 @@ export function renderFooter() {
             <h4 class="footer-heading">Cổng thông tin</h4>
             <ul class="footer-links">
               <li><a href="index.html">Trang chủ</a></li>
-              <li><a href="search.html">Tra cứu lô nguyên liệu</a></li>
-              <li><a href="trace.html">Truy xuất hành trình & QR</a></li>
+              <li><a href="search.html">Tra cứu & Truy xuất lô</a></li>
             </ul>
           </div>
 

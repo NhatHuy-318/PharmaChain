@@ -12,7 +12,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000001",
     "docHash": "0x59857645f9d131d4d760bbba4f3550197ce89826a4160b4f17753c981ac7da6d",
     "docName": "COA_PEN-K-20260901-001.txt",
-    "docType": "Giấy chứng nhận phân tích (COA)",
+    "docType": "COA",
+    "documentMetadata": {
+      "docType": "COA",
+      "docTypeName": "Giấy chứng nhận phân tích (COA / MSDS)",
+      "docNumber": "COA-PEN-2026-001",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0x59857645f9d131d4d760bbba4f3550197ce89826a4160b4f17753c981ac7da6d",
+      "fileName": "COA_PEN-K-20260901-001.txt",
+      "uploadedAt": 1788220800,
+      "uploadedBy": "0x2222222222222222222222222222222222222222",
+      "issuingOrg": "Dược Hậu Giang Pharma",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "batchNo": "PEN-K-20260901-001",
       "materialName": "Penicillin G potassium",
@@ -35,7 +48,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000002",
     "docHash": "0x9c445de103be107c5d6d800c97a573b83d68aded8a1d1e70f48c27d1ad9aaa46",
     "docName": "PhieuKiemNghiem_KN-0932.txt",
-    "docType": "Phiếu kiểm nghiệm xuất xưởng",
+    "docType": "TEST_REPORT",
+    "documentMetadata": {
+      "docType": "TEST_REPORT",
+      "docTypeName": "Phiếu kiểm nghiệm xuất xưởng",
+      "docNumber": "KN-0932",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0x9c445de103be107c5d6d800c97a573b83d68aded8a1d1e70f48c27d1ad9aaa46",
+      "fileName": "PhieuKiemNghiem_KN-0932.txt",
+      "uploadedAt": 1788597000,
+      "uploadedBy": "0x3333333333333333333333333333333333333333",
+      "issuingOrg": "Viện Kiểm nghiệm Thuốc TP.HCM",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "passed": true,
       "reportNo": "KN-0932",
@@ -55,7 +81,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000003",
     "docHash": "0xe3a3830c734da038244cc5ac9b76e5e3b6e713407e8e2b7906055892b41577e4",
     "docName": "ToKhaiHaiQuan_HQ-2026-9981.txt",
-    "docType": "Tờ khai hải quan nhập khẩu thông quan",
+    "docType": "IMPORT_DECLARATION",
+    "documentMetadata": {
+      "docType": "IMPORT_DECLARATION",
+      "docTypeName": "Tờ khai Hải quan nhập khẩu",
+      "docNumber": "HQ-2026-9981",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0xe3a3830c734da038244cc5ac9b76e5e3b6e713407e8e2b7906055892b41577e4",
+      "fileName": "ToKhaiHaiQuan_HQ-2026-9981.txt",
+      "uploadedAt": 1789480800,
+      "uploadedBy": "0x4444444444444444444444444444444444444444",
+      "issuingOrg": "Chi cục Hải quan Cát Lái",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "originCountry": "Ấn Độ (India)",
       "customsDeclNo": "HQ-2026-9981",
@@ -75,7 +114,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000004",
     "docHash": "0x173fbb32718aa453999eac241cf7fa31ee694b6c90c829262bcae0a5b6a315e6",
     "docName": "PhieuGiaoHang_DEL-7782.txt",
-    "docType": "Phiếu giao hàng & Vận đơn",
+    "docType": "DELIVERY_NOTE",
+    "documentMetadata": {
+      "docType": "DELIVERY_NOTE",
+      "docTypeName": "Phiếu giao hàng / Vận đơn",
+      "docNumber": "DEL-7782",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0x173fbb32718aa453999eac241cf7fa31ee694b6c90c829262bcae0a5b6a315e6",
+      "fileName": "PhieuGiaoHang_DEL-7782.txt",
+      "uploadedAt": 1789898400,
+      "uploadedBy": "0x4444444444444444444444444444444444444444",
+      "issuingOrg": "Tổng Công ty Dược Việt Nam - Vinapharm",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "from": "0x4444444444444444444444444444444444444444",
       "to": "0x5555555555555555555555555555555555555555",
@@ -95,7 +147,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000005",
     "docHash": "0x80f679ea08f9adec3cda6a2ff9accc12ee1f1263e13fd3b30c0c1a1077a567e9",
     "docName": "BienBanNhanHang_REC-5512.txt",
-    "docType": "Biên bản tiếp nhận vật tư & Kiểm đếm",
+    "docType": "RECEIVING_PROTOCOL",
+    "documentMetadata": {
+      "docType": "RECEIVING_PROTOCOL",
+      "docTypeName": "Biên bản nhận hàng",
+      "docNumber": "REC-5512",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0x80f679ea08f9adec3cda6a2ff9accc12ee1f1263e13fd3b30c0c1a1077a567e9",
+      "fileName": "BienBanNhanHang_REC-5512.txt",
+      "uploadedAt": 1790075700,
+      "uploadedBy": "0x5555555555555555555555555555555555555555",
+      "issuingOrg": "Nhà máy Dược phẩm Delta",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "receiver": "0x5555555555555555555555555555555555555555"
     }
@@ -113,7 +178,20 @@
     "txHash": "0x1111000000000000000000000000000000000000000000000000000000000006",
     "docHash": "0xcba90d3614f58bbf3c2e073f917fd1e1cb213a121ece25e53bef8855c5072c0a",
     "docName": "PhieuKiemTraQC_QC-DELTA-0457.txt",
-    "docType": "Phiếu kiểm tra QC xuất xưởng giải phóng",
+    "docType": "QC_REPORT",
+    "documentMetadata": {
+      "docType": "QC_REPORT",
+      "docTypeName": "Phiếu kiểm tra QC nơi nhận",
+      "docNumber": "QC-DELTA-0457",
+      "batchId": 1,
+      "batchNo": "PEN-K-20260901-001",
+      "docHash": "0xcba90d3614f58bbf3c2e073f917fd1e1cb213a121ece25e53bef8855c5072c0a",
+      "fileName": "PhieuKiemTraQC_QC-DELTA-0457.txt",
+      "uploadedAt": 1790264700,
+      "uploadedBy": "0x5555555555555555555555555555555555555555",
+      "issuingOrg": "Nhà máy Dược phẩm Delta",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "passed": true,
       "reportNo": "QC-DELTA-0457",
@@ -134,7 +212,20 @@
     "txHash": "0x2222000000000000000000000000000000000000000000000000000000000001",
     "docHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "docName": "COA_AMO-C-20260905-002.txt",
-    "docType": "Giấy chứng nhận phân tích (COA)",
+    "docType": "COA",
+    "documentMetadata": {
+      "docType": "COA",
+      "docTypeName": "Giấy chứng nhận phân tích (COA / MSDS)",
+      "docNumber": "COA-AMO-2026-002",
+      "batchId": 2,
+      "batchNo": "AMO-C-20260905-002",
+      "docHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "fileName": "COA_AMO-C-20260905-002.txt",
+      "uploadedAt": 1788566400,
+      "uploadedBy": "0x2222222222222222222222222222222222222222",
+      "issuingOrg": "Dược Hậu Giang Pharma",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "batchNo": "AMO-C-20260905-002",
       "materialName": "Amoxicillin trihydrate compact",
@@ -157,7 +248,20 @@
     "txHash": "0x4444000000000000000000000000000000000000000000000000000000000002",
     "docHash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "docName": "PhieuKiemNghiem_Fail.txt",
-    "docType": "Phiếu kiểm nghiệm không đạt",
+    "docType": "TEST_REPORT",
+    "documentMetadata": {
+      "docType": "TEST_REPORT",
+      "docTypeName": "Phiếu kiểm nghiệm xuất xưởng",
+      "docNumber": "KN-FAIL-882",
+      "batchId": 4,
+      "batchNo": "MET-X-20260912-004",
+      "docHash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "fileName": "PhieuKiemNghiem_Fail.txt",
+      "uploadedAt": 1789200000,
+      "uploadedBy": "0x3333333333333333333333333333333333333333",
+      "issuingOrg": "Viện Kiểm nghiệm Thuốc TP.HCM",
+      "verificationDisclaimer": "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    },
     "fields": {
       "passed": false,
       "reportNo": "KN-FAIL-882",
@@ -165,4 +269,3 @@
     }
   }
 ]
-

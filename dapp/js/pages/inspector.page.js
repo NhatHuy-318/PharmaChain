@@ -215,8 +215,14 @@ export async function initInspectorPage() {
       const passed = $('#test-result-decision')?.value === 'true';
       const reportNo = $('#test-report-no')?.value.trim();
       const testDateVal = $('#test-date')?.value;
-      const testMethod = $('#test-method')?.value.trim();
-      const testNotes = $('#test-notes')?.value.trim();
+      const testMethod = $('#test-method')?.value.trim() || null;
+      const testNotes = $('#test-notes')?.value.trim() || null;
+
+      // P1 Structured QC optional fields
+      const sampleId = $('#test-sample-id')?.value.trim() || null;
+      const specificationRef = $('#test-specification-ref')?.value.trim() || null;
+      const analystName = $('#test-analyst-name')?.value.trim() || null;
+      const reviewerName = $('#test-reviewer-name')?.value.trim() || null;
 
       if (!reportNo) {
         showToast('Vui lòng nhập số hiệu phiếu kiểm nghiệm.', 'error');
@@ -261,6 +267,10 @@ export async function initInspectorPage() {
               metadata: {
                 testMethod,
                 testNotes,
+                sampleId,
+                specificationRef,
+                analystName,
+                reviewerName,
               },
             });
 

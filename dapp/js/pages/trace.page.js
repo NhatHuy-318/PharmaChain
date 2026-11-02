@@ -34,6 +34,7 @@ export async function initTracePage() {
     }
 
     renderBatchHeader(currentBatch);
+    renderBatchSpecs(currentBatch);
     renderTimeline(currentBatch);
     setupVerificationSection(currentBatch);
 
@@ -116,6 +117,141 @@ function renderBatchHeader(b) {
       };
     }
   }
+}
+
+function renderBatchSpecs(b) {
+  const container = $('#trace-spec-container');
+  if (!container) return;
+
+  const meta = b.metadata || {};
+  const isMock = meta.isMock !== false;
+
+  container.innerHTML = `
+    <div class="card" style="padding: var(--space-6); background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+      <div class="flex items-center justify-between" style="border-bottom: 1px solid #EDF2F7; padding-bottom: var(--space-3); margin-bottom: var(--space-4);">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <h3 style="margin: 0; color: var(--color-primary-dark); font-size: var(--font-size-base);">
+            Hồ sơ Kỹ thuật & Siêu dữ liệu Định danh (Off-chain Specification)
+          </h3>
+        </div>
+        <div class="flex items-center gap-2">
+          ${isMock ? '<span class="badge" style="background:#EFF6FF; color:#1D4ED8; font-size:11px;">Mô phỏng học thuật</span>' : ''}
+          <span class="badge" style="background:#F1F5F9; color:#475569; font-size:11px;">Metadata Off-chain</span>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6);">
+        <!-- Cột 1: Định danh nguyên liệu & Tiêu chuẩn Dược điển -->
+        <div style="background: #F8FAFC; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
+          <div style="font-weight: 700; color: var(--color-primary-dark); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+            1. Định danh & Tiêu chuẩn Dược
+          </div>
+          <table style="width: 100%; font-size: var(--font-size-xs); line-height: 1.8;">
+            <tr>
+              <td style="color: var(--color-text-muted); width: 45%;">Mã nguyên liệu:</td>
+              <td class="text-mono" style="font-weight: 600;">${meta.materialCode || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Mã CAS:</td>
+              <td class="text-mono">${meta.casNumber || '— (Chưa công bố)'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Cấp chất lượng:</td>
+              <td style="font-weight: 600;">${meta.grade || 'Dược dụng (USP/EP)'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Dược điển tham chiếu:</td>
+              <td style="font-weight: 600; color: var(--color-primary);">${meta.pharmacopoeiaStandard || 'DĐVN V / USP'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Tiêu chuẩn cơ sở:</td>
+              <td>${meta.productSpecRef || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Bảo quản (On-chain):</td>
+              <td style="font-style: italic;">${b.storageConditions || meta.storageConditions || 'Theo nhãn'}</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Cột 2: Quy cách đóng gói & Khối lượng -->
+        <div style="background: #F8FAFC; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-secondary);">
+          <div style="font-weight: 700; color: var(--color-primary-dark); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+            2. Quy cách Đóng gói & Lô hàng
+          </div>
+          <table style="width: 100%; font-size: var(--font-size-xs); line-height: 1.8;">
+            <tr>
+              <td style="color: var(--color-text-muted); width: 45%;">Tổng khối lượng:</td>
+              <td style="font-weight: 700; color: var(--color-primary); font-size: 13px;">${meta.quantity ? `${meta.quantity} ${meta.unit || 'kg'}` : '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Số kiện hàng:</td>
+              <td style="font-weight: 600;">${meta.packageCount ? `${meta.packageCount} kiện` : '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Quy cách bao bì:</td>
+              <td>${meta.packagingSpec || meta.packageType || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Khối lượng tịnh / bì:</td>
+              <td>${meta.netWeight ? `${meta.netWeight} kg` : '—'} / ${meta.grossWeight ? `${meta.grossWeight} kg` : '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Số niêm chì NSX:</td>
+              <td class="text-mono" style="font-weight: 600;">${meta.sealNumber || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Mã Pallet:</td>
+              <td class="text-mono">${meta.palletId || '—'}</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Cột 3: Vận chuyển, Cảng nhập & Kho nhận -->
+        <div style="background: #F8FAFC; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid #10B981;">
+          <div style="font-weight: 700; color: var(--color-primary-dark); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+            3. Logistics, Hải quan & Kho nhận
+          </div>
+          <table style="width: 100%; font-size: var(--font-size-xs); line-height: 1.8;">
+            <tr>
+              <td style="color: var(--color-text-muted); width: 45%;">Quốc gia xuất xứ:</td>
+              <td style="font-weight: 600;">${meta.countryOfOrigin || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Cửa khẩu nhập:</td>
+              <td>${meta.importPort || 'Cảng Cát Lái, TP.HCM'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Đơn vị vận chuyển:</td>
+              <td style="font-weight: 600;">${meta.carrierName || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Mã vận đơn AWB:</td>
+              <td class="text-mono">${meta.trackingNumber || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Vị trí kho nhận:</td>
+              <td style="font-weight: 600;">${meta.warehouseLocation || '—'}</td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-muted);">Niêm phong khi nhận:</td>
+              <td style="font-weight: 600;">${meta.sealStatus ? (meta.sealStatus.includes('Nguyên vẹn') ? '✅ ' + meta.sealStatus : '⚠️ ' + meta.sealStatus) : '—'}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px dashed #E2E8F0; font-size: 11px; color: var(--color-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <span>🔒 Dữ liệu có dấu thời gian on-chain đã xác minh qua Smart Contract; các chi tiết kỹ thuật chuyên sâu được bảo toàn và lưu trữ qua Metadata định danh.</span>
+        <span class="text-mono">Batch ID: #${b.id}</span>
+      </div>
+    </div>
+  `;
 }
 
 function renderTimeline(b) {
@@ -208,7 +344,10 @@ function renderTimeline(b) {
                   <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
                 <span style="font-size: 11px; font-weight: var(--font-weight-bold); color: var(--color-primary-dark);">
-                  ${e.docName || e.docType || 'Mã băm hồ sơ on-chain'}:
+                  ${e.documentMetadata?.docTypeName || e.docType || 'Hồ sơ'}:
+                </span>
+                <span style="font-size: 11px; color: var(--color-text-muted); font-family: var(--font-family-mono);">
+                  ${e.docName || e.documentMetadata?.fileName || ''}
                 </span>
                 <span class="timeline-hash-text" title="${e.docHash}">
                   ${shortenHash(e.docHash, 8)}

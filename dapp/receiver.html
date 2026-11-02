@@ -105,15 +105,46 @@
               <span class="form-hint">Theo quy tắc vận hành, thao tác tiếp nhận vẫn được phép ghi nhận ngay cả khi lô đã cận hoặc quá hạn sử dụng (hàng đã đến nơi thực tế).</span>
             </div>
 
-            <!-- Hàng 2: Người nhận & Ghi chú tiếp nhận -->
-            <div class="form-grid-2">
+            <!-- Hàng 2: Người nhận & Vị trí kho & Tình trạng niêm phong -->
+            <div class="form-grid-3">
               <div class="form-group">
-                <label for="confirm-recipient-name" class="form-label">Họ tên người nhận hàng / Thủ kho</label>
+                <label for="confirm-recipient-name" class="form-label">Họ tên người nhận / Thủ kho</label>
                 <input
                   type="text"
                   id="confirm-recipient-name"
                   class="form-input"
-                  placeholder="vd: Nguyễn Văn A (Phòng Kho vận)"
+                  placeholder="vd: Trần Đình Trọng (Thủ kho)"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-warehouse-loc" class="form-label">Vị trí kho tiếp nhận</label>
+                <input
+                  type="text"
+                  id="confirm-warehouse-loc"
+                  class="form-input"
+                  placeholder="vd: Kho nguyên liệu A - Nhà máy Delta"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-seal-status" class="form-label">Tình trạng niêm phong chì</label>
+                <select id="confirm-seal-status" class="form-select">
+                  <option value="Nguyên vẹn">✅ Còn nguyên vẹn, đúng số hiệu</option>
+                  <option value="Hư hỏng / Rách niêm phong">❌ Bị rách vỡ / Không khớp số hiệu</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Hàng 3: Khối lượng thực nhận & Ghi chú -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="confirm-actual-qty" class="form-label">Khối lượng thực cân nhận (kg)</label>
+                <input
+                  type="number"
+                  id="confirm-actual-qty"
+                  class="form-input"
+                  placeholder="vd: 500"
                 />
               </div>
 
@@ -245,7 +276,30 @@
               </div>
             </div>
 
-            <!-- Hàng 3: Ghi chú kết quả -->
+            <!-- Hàng 3: Khối lượng chấp nhận & từ chối (P1 Optional Metadata) -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="qc-accepted-qty" class="form-label">Khối lượng đạt chấp nhận nhập kho (kg)</label>
+                <input
+                  type="number"
+                  id="qc-accepted-qty"
+                  class="form-input"
+                  placeholder="vd: 500"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="qc-rejected-qty" class="form-label">Khối lượng không đạt / cách ly (kg)</label>
+                <input
+                  type="number"
+                  id="qc-rejected-qty"
+                  class="form-input"
+                  placeholder="vd: 0"
+                />
+              </div>
+            </div>
+
+            <!-- Hàng 4: Ghi chú kết quả -->
             <div class="form-group">
               <label for="qc-notes" class="form-label">Ghi chú chi tiết kết quả thẩm định</label>
               <input

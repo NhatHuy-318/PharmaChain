@@ -260,8 +260,18 @@ export class BatchService {
         : null,
     ]);
 
+    // 4. Trích xuất storageConditions và materialName từ Event log BatchRegistered
+    // (BatchRegistry.sol chỉ emit 2 trường này trong event, không lưu trong storage struct Batch)
+    const registeredEvent = events.find((e) => e.eventName === 'BatchRegistered');
+    const storageConditions =
+      registeredEvent?.fields?.storageConditions || metadata.storageConditions || '';
+    const materialName =
+      registeredEvent?.fields?.materialName || metadata.materialName || onChainBatch.materialName || '';
+
     return {
       ...onChainBatch,
+      materialName,
+      storageConditions,
       statusName: BatchStatusName[onChainBatch.status] || 'Unknown',
       isTerminal: isTerminalStatus(onChainBatch.status),
       isExpired,

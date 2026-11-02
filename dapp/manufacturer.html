@@ -125,7 +125,7 @@
             </div>
           </div>
 
-          <!-- Hàng 4: Siêu dữ liệu off-chain (Khối lượng, số kiện, quy cách) -->
+          <!-- Hàng 4: Siêu dữ liệu đóng gói cơ bản -->
           <div class="form-grid-3">
             <div class="form-group">
               <label for="mfg-quantity" class="form-label">Tổng khối lượng</label>
@@ -147,6 +147,55 @@
               <input type="number" id="mfg-package-count" class="form-input" placeholder="vd: 20" min="1" />
             </div>
           </div>
+
+          <!-- Nhóm thông tin kỹ thuật bổ sung (P1 Optional Metadata - lưu off-chain) -->
+          <details style="margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4); background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md);">
+            <summary style="font-weight: 600; color: var(--color-primary-dark); cursor: pointer; user-select: none;">
+              + Bổ sung thông số kỹ thuật & quy cách đóng gói chi tiết (Tùy chọn)
+            </summary>
+            <div style="margin-top: var(--space-4);">
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="mfg-material-code" class="form-label">Mã nguyên liệu nội bộ</label>
+                  <input type="text" id="mfg-material-code" class="form-input text-mono" placeholder="vd: MAT-PEN-01" />
+                </div>
+                <div class="form-group">
+                  <label for="mfg-grade" class="form-label">Cấp chất lượng</label>
+                  <input type="text" id="mfg-grade" class="form-input" placeholder="vd: Dược dụng / USP" />
+                </div>
+                <div class="form-group">
+                  <label for="mfg-standard" class="form-label">Dược điển tham chiếu</label>
+                  <input type="text" id="mfg-standard" class="form-input" placeholder="vd: DĐVN V, USP 44" />
+                </div>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="mfg-spec-ref" class="form-label">Số hiệu TCCS / Tiêu chuẩn</label>
+                  <input type="text" id="mfg-spec-ref" class="form-input" placeholder="vd: TCCS 12/2026/DHG" />
+                </div>
+                <div class="form-group">
+                  <label for="mfg-package-type" class="form-label">Quy cách bao bì</label>
+                  <input type="text" id="mfg-package-type" class="form-input" placeholder="vd: Thùng tròn, lót PE kép" />
+                </div>
+                <div class="form-group">
+                  <label for="mfg-seal-number" class="form-label">Số niêm phong chì xuất xưởng</label>
+                  <input type="text" id="mfg-seal-number" class="form-input text-mono" placeholder="vd: SEAL-DHG-8821" />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="mfg-net-weight" class="form-label">Khối lượng tịnh (Net Weight - kg)</label>
+                  <input type="number" id="mfg-net-weight" class="form-input" placeholder="vd: 500" />
+                </div>
+                <div class="form-group">
+                  <label for="mfg-gross-weight" class="form-label">Khối lượng cả bì (Gross Weight - kg)</label>
+                  <input type="number" id="mfg-gross-weight" class="form-input" placeholder="vd: 520" />
+                </div>
+              </div>
+            </div>
+          </details>
 
           <!-- Hàng 5: Upload COA tự băm SHA-256 -->
           <div class="form-group">

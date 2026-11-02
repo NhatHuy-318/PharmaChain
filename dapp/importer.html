@@ -142,6 +142,24 @@
               </div>
             </div>
 
+            <!-- Hàng 3: Cửa khẩu nhập & Ngày thông quan (P1 Optional Metadata) -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="import-port" class="form-label">Cửa khẩu nhập khẩu (Tùy chọn)</label>
+                <input
+                  type="text"
+                  id="import-port"
+                  class="form-input"
+                  placeholder="vd: Cảng Cát Lái, TP.HCM / Sân bay Tân Sơn Nhất"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="import-clearance-date" class="form-label">Ngày thông quan thực tế (Tùy chọn)</label>
+                <input type="date" id="import-clearance-date" class="form-input" />
+              </div>
+            </div>
+
             <!-- Upload Tờ khai Hải quan -->
             <div class="form-group">
               <label class="form-label">
@@ -231,6 +249,36 @@
                 <span class="form-hint">Chỉ hiển thị các tổ chức có vai trò Receiver đã đăng ký trên hệ thống.</span>
               </div>
             </div>
+
+            <!-- Nhóm thông tin vận chuyển & chuỗi lạnh (P1 Optional Metadata - lưu off-chain) -->
+            <details style="margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4); background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md);">
+              <summary style="font-weight: 600; color: var(--color-primary-dark); cursor: pointer; user-select: none;">
+                + Bổ sung thông tin đơn vị vận chuyển & chuỗi lạnh (Tùy chọn)
+              </summary>
+              <div style="margin-top: var(--space-4);">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="transfer-carrier-name" class="form-label">Đơn vị vận chuyển logistics</label>
+                    <input type="text" id="transfer-carrier-name" class="form-input" placeholder="vd: Vinafco Logistics / Viettel Post" />
+                  </div>
+                  <div class="form-group">
+                    <label for="transfer-tracking-no" class="form-label">Mã vận đơn (Tracking AWB/BL)</label>
+                    <input type="text" id="transfer-tracking-no" class="form-input text-mono" placeholder="vd: VN-LOG-99214" />
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="transfer-temp-range" class="form-label">Nhiệt độ vận chuyển yêu cầu</label>
+                    <input type="text" id="transfer-temp-range" class="form-input" placeholder="vd: 15-25°C / Bảo quản mát" />
+                  </div>
+                  <div class="form-group">
+                    <label for="transfer-vehicle-plate" class="form-label">Biển số phương tiện / Container</label>
+                    <input type="text" id="transfer-vehicle-plate" class="form-input text-mono" placeholder="vd: 51C-889.12" />
+                  </div>
+                </div>
+              </div>
+            </details>
 
             <!-- Upload Phiếu giao hàng -->
             <div class="form-group">
