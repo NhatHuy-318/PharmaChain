@@ -1,0 +1,3 @@
+# Hồ sơ mẫu giữ nguyên từng byte: hash trong dữ liệu mẫu và test được tính trên bản LF,
+# nếu Git đổi sang CRLF khi checkout trên Windows thì đối chiếu sẽ báo "Không khớp".
+sample-docs/** -text
