@@ -25,8 +25,9 @@ export class JsonServerDataAdapter extends IDataAdapter {
 
   async saveBatchMetadata(batchId, metadata) {
     try {
+      // PATCH gộp vào bản ghi cũ (giống MockDataAdapter); PUT sẽ xóa metadata của các bước trước
       const res = await fetch(`${this.baseUrl}/batches/${batchId}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...metadata, id: batchId, batchId }),
       });
@@ -68,11 +69,14 @@ export class JsonServerDataAdapter extends IDataAdapter {
 
   async saveOrganization(org) {
     try {
-      const res = await fetch(`${this.baseUrl}/organizations`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(org),
-      });
+      // id = địa chỉ ví: cấp lại vai trò cho cùng ví thì ghi đè, không tạo bản ghi trùng
+      const addr = org.address.toLowerCase();
+      const body = JSON.stringify({ ...org, id: addr, address: addr });
+      const headers = { 'Content-Type': 'application/json' };
+      let res = await fetch(`${this.baseUrl}/organizations/${addr}`, { method: 'PUT', headers, body });
+      if (res.status === 404) {
+        res = await fetch(`${this.baseUrl}/organizations`, { method: 'POST', headers, body });
+      }
       return res.ok;
     } catch (err) {
       return false;

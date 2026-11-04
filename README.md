@@ -150,6 +150,37 @@ npm run test:report    # chạy như trên và ghi bảng ca kiểm thử đại
 
 Mỗi nhóm kiểm thử trong `test/` chạy trên một chuỗi mới. Bộ kiểm thử tua được thời gian của chuỗi để kiểm tra quy tắc hạn dùng. Hướng dẫn chạy tay một kịch bản trên Remix VM để chụp ảnh cho báo cáo: [docs/remix-testing.md](docs/remix-testing.md).
 
+## Chạy JSON Server
+
+DApp ở chế độ `live` đọc và ghi siêu dữ liệu qua JSON Server tại `http://localhost:3001`. Chế độ `mock` không cần bước này.
+
+```bash
+npm run db         # chạy JSON Server trên server/db.json, cổng 3001
+npm run db:reset   # xóa toàn bộ siêu dữ liệu, ví dụ trước khi deploy contract mới
+```
+
+`server/db.json` có hai collection:
+
+| Collection | `id` | Nội dung |
+|---|---|---|
+| `batches` | `batchId` trên chuỗi | Số lô, tên nguyên liệu, số phiếu, ghi chú và hash hồ sơ của từng bước. Mỗi bước gộp thêm trường vào bản ghi, không ghi đè |
+| `organizations` | Địa chỉ ví (chữ thường) | Tên đơn vị, số giấy phép, hash hồ sơ pháp lý |
+
+File bắt đầu rỗng: `batchId` do contract cấp, nên mỗi lần deploy contract mới cần chạy `npm run db:reset` để siêu dữ liệu không trỏ nhầm sang lô của contract cũ.
+
+## Bộ dữ liệu minh họa
+
+[scripts/dataset/dataset.js](scripts/dataset/dataset.js) định nghĩa 5 tổ chức giả định và 8 lô, mỗi lô dừng ở một trạng thái của contract (từ `Registered` tới `Released`/`Quarantined`, có một lô hủy giao rồi giao lại). Script nạp sinh hồ sơ cho từng bước vào [sample-docs/dataset/](sample-docs/dataset/README.md), gửi giao dịch với hash thật của các file đó, rồi ghi siêu dữ liệu khớp `batchId` vào `server/db.json`.
+
+```bash
+npm run seed           # chạy thử trên Ganache trong bộ nhớ và kiểm tra kết quả; không ghi db.json
+npm run seed:wallets   # tạo .env với 6 ví mới (admin, các bên, một Receiver dự phòng)
+npm run seed:rsk       # deploy contract mới lên RSK Testnet, nạp toàn bộ dataset,
+                       # ghi deployments/rsk-testnet.json và server/db.json
+```
+
+Trước khi chạy `seed:rsk`, xin tRBTC từ [faucet](https://faucet.rootstock.io) cho ví admin; script tự chuyển phí gas sang các ví còn lại. Cả lần nạp tốn khoảng 0,0002 tRBTC và mất vài chục phút vì RSK Testnet ra khối khoảng 30 giây. Các private key trong `.env` nhập được vào MetaMask để thao tác tiếp bằng đúng các ví này khi demo.
+
 ## Mạng thử nghiệm
 
 | Thông số | Giá trị |

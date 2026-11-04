@@ -6,10 +6,16 @@
   "scripts": {
     "test": "node --no-deprecation test/run.js",
     "test:report": "node --no-deprecation test/run.js --report",
-    "test:mock": "node scripts/test-mock-chain.mjs"
+    "test:mock": "node scripts/test-mock-chain.mjs",
+    "seed": "node --no-deprecation scripts/seed.js",
+    "seed:wallets": "node --no-deprecation scripts/seed.js --new-wallets",
+    "seed:rsk": "node --no-deprecation scripts/seed.js --network rsk",
+    "db": "json-server --watch server/db.json --port 3001",
+    "db:reset": "node -e \"require('fs').writeFileSync('server/db.json', JSON.stringify({ batches: [], organizations: [] }, null, 2) + '\\n')\""
   },
   "devDependencies": {
     "ganache": "7.9.2",
+    "json-server": "0.17.4",
     "solc": "0.8.19",
     "web3": "4.16.0"
   }
