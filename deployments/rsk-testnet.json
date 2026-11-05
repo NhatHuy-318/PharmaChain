@@ -1,0 +1,237 @@
+{
+  "network": "RSK Testnet",
+  "chainId": 31,
+  "address": "0x0D007f0bfe4FB2AA306922C3EED9085B0128429e",
+  "deployBlock": 8261327,
+  "deployTx": "0x8b6c21aef809ea99febf7d9b211fb8bbc31ffe388f3223a525d193d9c6a44edd",
+  "deployer": "0x1De008e3CF96427e884820277794908aEf87C24b",
+  "compiler": "0.8.19+commit.7dd6d404.Emscripten.clang",
+  "evmVersion": "paris",
+  "deployedAt": "2026-11-05T09:53:12.014Z",
+  "accounts": {
+    "admin": "0x1De008e3CF96427e884820277794908aEf87C24b",
+    "manufacturer": "0xD905154E0eec719915beA991F465C9e44E36E2Ad",
+    "inspector": "0x1dc3D352E665e2d5300C110085e9ee652FaE9c80",
+    "importer": "0xD8DfA4E8f156E7F4D21291AeFF866cF2961574F0",
+    "receiver": "0x7bDAAb82144B2DD65604996941de35a22be7D0b9",
+    "receiver2": "0x07915dd89f92b5eac56b0d4C7ebA358E6857CBd1"
+  },
+  "transactions": [
+    {
+      "batchNo": null,
+      "step": "grantRole",
+      "txHash": "0x35ee5aa0d9f6cf8770ab03d0a06a933b54d144f2b2a577571236bb776ca1951d",
+      "blockNumber": 8261329
+    },
+    {
+      "batchNo": null,
+      "step": "grantRole",
+      "txHash": "0x11b012de9c063671a4a18fafbe256e5ac7fcc9f5722c8710a57c933b52c962a5",
+      "blockNumber": 8261331
+    },
+    {
+      "batchNo": null,
+      "step": "grantRole",
+      "txHash": "0x394f5d947a6679bbd4ee2125fed9df9ca71fe88bc6cc8be86775a8c8763ae21d",
+      "blockNumber": 8261333
+    },
+    {
+      "batchNo": null,
+      "step": "grantRole",
+      "txHash": "0xd60fa7bda676ea33c6c868d698238255adaf45e34899d0a4448b3b88c1e5ff60",
+      "blockNumber": 8261334
+    },
+    {
+      "batchNo": null,
+      "step": "grantRole",
+      "txHash": "0x1bca9ea44eb0eaaf7d15ab6ae661496ce8e8df45f08aa2bb111cc0390af9bd91",
+      "blockNumber": 8261335
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "coa",
+      "txHash": "0x6efa99ec8bdb56b03c192ffeeed88c6242b707e2bf6607e1197511f32efe8658",
+      "blockNumber": 8261337
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "test",
+      "txHash": "0xf781e6e8e6d0705358a9886a67db58a881387d275a45e496647adaa1f44f0d25",
+      "blockNumber": 8261339
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "import",
+      "txHash": "0xb28c0d582022d845e52d7961d2a2774a1341fb915ce3d10e482b91c3edf048f1",
+      "blockNumber": 8261341
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "deliver",
+      "txHash": "0x149a0c48fd2a483d98bb3a2d18e6fd20d8334e7e862aae49ac05684b22cc7aeb",
+      "blockNumber": 8261343
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "receive",
+      "txHash": "0xc589d920d6af7fcae79067a8d3ece3c29d77df6168971dbffed01d5eab9a8a0f",
+      "blockNumber": 8261344
+    },
+    {
+      "batchNo": "PEN-ABC-20260901-001",
+      "step": "qc",
+      "txHash": "0xccd0f9b2b2316e3806dd196fe22f1446ae4519cdb8b65a1939e4b76747564f7a",
+      "blockNumber": 8261346
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "coa",
+      "txHash": "0xd99c6a0fc74ca62c4b4aded2f49743c59377a9f0130af0e0a27eb1cb0437d8c9",
+      "blockNumber": 8261348
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "test",
+      "txHash": "0x524328317659fb8f520c361bec1d5e314f98f8e5ae4d9df08ffe62c064040142",
+      "blockNumber": 8261350
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "import",
+      "txHash": "0xafdadfc7d03dc999fb1abad36d95e264aad21266e560b02e7d51b30ebf161fc1",
+      "blockNumber": 8261352
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "deliver",
+      "txHash": "0x4f2d7e9c79ba74478cb94cfadf439d54c5959fa367777c709eff5f740032a428",
+      "blockNumber": 8261353
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "receive",
+      "txHash": "0x2455192a08c1ac8887e2f0c96e6ecafc35081f5adb693f2a2d9b4b15ca8edd9c",
+      "blockNumber": 8261354
+    },
+    {
+      "batchNo": "AMO-ABC-20260905-002",
+      "step": "qc",
+      "txHash": "0x639324ee450ec6e5f385a173c1211ba6dd2f9d1aec9bbb3a3f7a5d75be444259",
+      "blockNumber": 8261356
+    },
+    {
+      "batchNo": "PAR-ABC-20260910-003",
+      "step": "coa",
+      "txHash": "0x9e1236f12da241f2a864dd931d575fbcf2330e5781ce640a5cf74e03948468d6",
+      "blockNumber": 8261358
+    },
+    {
+      "batchNo": "PAR-ABC-20260910-003",
+      "step": "test",
+      "txHash": "0x9d70845ef3e95ce0190b2a6acba3fde4ab07dd6c7d2a22df13045efa93624f31",
+      "blockNumber": 8261360
+    },
+    {
+      "batchNo": "CEF-ABC-20260915-004",
+      "step": "coa",
+      "txHash": "0xec02026f540eede67bcef0b6192d3e8b2c26671e68c08c9c2b051bbf76ecd79a",
+      "blockNumber": 8261362
+    },
+    {
+      "batchNo": "CEF-ABC-20260915-004",
+      "step": "test",
+      "txHash": "0x3e6ff9e9c8a7ddc591cf67271a5c8ceebd2a5a0a2560cf55e7816b56c1e908f3",
+      "blockNumber": 8261363
+    },
+    {
+      "batchNo": "CEF-ABC-20260915-004",
+      "step": "import",
+      "txHash": "0x2c190bc9d59d401dc01cfd5902aa89e928d4937db3d7567f512b46377196fc41",
+      "blockNumber": 8261365
+    },
+    {
+      "batchNo": "CEF-ABC-20260915-004",
+      "step": "deliver",
+      "txHash": "0xcb5c67120591ef202291334a9661d4c8e2c51b4c00ee448404154eaf60cdfb12",
+      "blockNumber": 8261367
+    },
+    {
+      "batchNo": "CEF-ABC-20260915-004",
+      "step": "receive",
+      "txHash": "0xdc91f8375bc95596e527385e7a50efc085a616d80bef2ad76b3229ddf129bd4e",
+      "blockNumber": 8261368
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "coa",
+      "txHash": "0x6649e015d570c37b0eecf2a340bc039115af14572bf774213547087600dc8c6d",
+      "blockNumber": 8261370
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "test",
+      "txHash": "0x879615ca4d56a659ef4d55d91beae7735c38efd63a103bfffc40eb9575d0e0b7",
+      "blockNumber": 8261372
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "import",
+      "txHash": "0x1a5e1f9c42838eae661abb105c8d9b906d82dd4b6f1710e4ec75551dddf9fc96",
+      "blockNumber": 8261374
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "deliver",
+      "txHash": "0xdb454d65d0d3e28d979005bbf879be4d0279ec55168bb47e69a75f4000b87f55",
+      "blockNumber": 8261375
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "cancel",
+      "txHash": "0x386fcffba1fcf25e29fce886daf738a6ba3794e389b7b29174104247e64b2ee8",
+      "blockNumber": 8261377
+    },
+    {
+      "batchNo": "AZI-ABC-20261001-005",
+      "step": "deliver",
+      "txHash": "0x1d6783e84d4503a40bfb86583af3656f52b85ab26daff0225bf455ea422c78e7",
+      "blockNumber": 8261379
+    },
+    {
+      "batchNo": "MET-ABC-20261008-006",
+      "step": "coa",
+      "txHash": "0x7b821ea3a2d49827179e9c306ea1ac9b4610409ec792adfb4563a367536f770c",
+      "blockNumber": 8261381
+    },
+    {
+      "batchNo": "MET-ABC-20261008-006",
+      "step": "test",
+      "txHash": "0xf2dcb8e2af706d5bb994db8a19d2b43c17d3c237cfa8b8462995424857f7deed",
+      "blockNumber": 8261382
+    },
+    {
+      "batchNo": "MET-ABC-20261008-006",
+      "step": "import",
+      "txHash": "0xf683397bbf96be9ba94378cc523cc22a2fa0dd1863839571a63d0ec8784f84a6",
+      "blockNumber": 8261383
+    },
+    {
+      "batchNo": "CIP-ABC-20261015-007",
+      "step": "coa",
+      "txHash": "0xcd25619ee77693e87f1b6363fbf130eaa8a93e2bd541dc62e2afcf0a62d8171f",
+      "blockNumber": 8261385
+    },
+    {
+      "batchNo": "CIP-ABC-20261015-007",
+      "step": "test",
+      "txHash": "0x7b3bee353e609727db1d35c17b0655f5a24347ed2610bdc8f7fed665b89619a5",
+      "blockNumber": 8261387
+    },
+    {
+      "batchNo": "IBU-ABC-20261020-008",
+      "step": "coa",
+      "txHash": "0x2f4c1be897d768980564105b6dc9705cdca925c3f82e49aa1378dea778009f60",
+      "blockNumber": 8261389
+    }
+  ]
+}

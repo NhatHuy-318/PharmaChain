@@ -146,6 +146,8 @@ Cần Node.js 18 trở lên.
 npm install
 npm test               # biên dịch contract bằng solc 0.8.19 (EVM paris) và chạy toàn bộ kiểm thử trên chuỗi giả lập Ganache
 npm run test:report    # chạy như trên và ghi bảng ca kiểm thử đại diện vào docs/test-results.md
+npm run test:mock      # kiểm thử MockChainAdapter của DApp (chế độ mock)
+npm run test:live      # kiểm thử Web3ChainAdapter của DApp trên Ganache, giả lập MetaMask (chế độ live)
 ```
 
 Mỗi nhóm kiểm thử trong `test/` chạy trên một chuỗi mới. Bộ kiểm thử tua được thời gian của chuỗi để kiểm tra quy tắc hạn dùng. Hướng dẫn chạy tay một kịch bản trên Remix VM để chụp ảnh cho báo cáo: [docs/remix-testing.md](docs/remix-testing.md).
@@ -180,6 +182,20 @@ npm run seed:rsk       # deploy contract mới lên RSK Testnet, nạp toàn b�
 ```
 
 Trước khi chạy `seed:rsk`, xin tRBTC từ [faucet](https://faucet.rootstock.io) cho ví admin; script tự chuyển phí gas sang các ví còn lại. Cả lần nạp tốn khoảng 0,0002 tRBTC và mất vài chục phút vì RSK Testnet ra khối khoảng 30 giây. Các private key trong `.env` nhập được vào MetaMask để thao tác tiếp bằng đúng các ví này khi demo.
+
+Sau khi nạp xong, chuyển DApp sang chế độ live trong [dapp/js/config/env.js](dapp/js/config/env.js):
+
+| Khóa | Giá trị |
+|---|---|
+| `APP_MODE` | `'live'` |
+| `CONTRACT_ADDRESS` | `address` trong `deployments/rsk-testnet.json` |
+| `DEPLOY_BLOCK` | `deployBlock` trong cùng file, để DApp đọc event từ khối deploy thay vì từ khối 0 |
+
+Chạy DApp bằng `npm run dapp` (cổng 8000). Lệnh này tắt bộ đệm trình duyệt, nên sửa `env.js` hay code xong chỉ cần tải lại trang; `python -m http.server` thì trình duyệt có thể giữ bản cũ.
+
+Ở chế độ live, vai trò và tên đơn vị của ví được đọc từ contract (event `RoleGranted`), không lấy từ `db.json`. Người xem chưa cài MetaMask vẫn tra cứu được qua `RPC_URL`.
+
+Node công khai `public-node.testnet.rsk.co` (cũng là RPC mặc định khi thêm mạng vào MetaMask) tắt `eth_getLogs`, nên không đọc được event. DApp đọc event qua REST API v2 của Blockscout (`LOGS_API_URL` trong `env.js`, giới hạn 180 yêu cầu mỗi phút) rồi tự giải mã bằng ABI. `scripts/seed.js` dùng cổng JSON-RPC của Blockscout (`RSK_LOGS_URL` trong `.env` nếu muốn đổi); cổng này chỉ cho khoảng 10 yêu cầu mỗi 40 phút, đủ cho một lần nạp nhưng không đủ cho DApp. Hàm `view` luôn gọi qua public-node (không phụ thuộc mạng đang chọn trong MetaMask), còn giao dịch được ký qua MetaMask.
 
 ## Mạng thử nghiệm
 

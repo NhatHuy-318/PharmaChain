@@ -1,4 +1,567 @@
 {
-  "batches": [],
-  "organizations": []
+  "batches": [
+    {
+      "id": 1,
+      "batchId": 1,
+      "batchNo": "PEN-ABC-20260901-001",
+      "materialName": "Penicillin G potassium",
+      "storageConditions": "Nơi khô mát, dưới 25°C, tránh ánh sáng",
+      "mfgDate": 1788195600,
+      "expiryDate": 1882890000,
+      "quantity": 500,
+      "unit": "kg",
+      "packageCount": 20,
+      "packagingSpec": "20 thùng x 25 kg, lót 2 lớp túi PE",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0001",
+          "fileName": "B1_COA-2026-0001.txt",
+          "docHash": "0x2c5ab59e9beacbbbdf00f8870ddd0abc2816331134e26d6a5cbea71c4fa9f38b",
+          "txHash": "0x6efa99ec8bdb56b03c192ffeeed88c6242b707e2bf6607e1197511f32efe8658"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0001",
+          "fileName": "B2_KN-2026-0001.txt",
+          "docHash": "0xf97301dbb5fed3fe0b7c19effc31db9e6fa61f8b2770d37b5e2cfcf4870ee6dc",
+          "txHash": "0xf781e6e8e6d0705358a9886a67db58a881387d275a45e496647adaa1f44f0d25"
+        },
+        {
+          "step": "B3",
+          "docNo": "HQ-2026-0001",
+          "fileName": "B3_HQ-2026-0001.txt",
+          "docHash": "0x16ec94da5c9d5e234f9454dc3c37e774c69a8ac0ad5a7348d1bec3bdc1bdb763",
+          "txHash": "0xb28c0d582022d845e52d7961d2a2774a1341fb915ce3d10e482b91c3edf048f1"
+        },
+        {
+          "step": "B4",
+          "docNo": "PGH-2026-0001",
+          "fileName": "B4_PGH-2026-0001.txt",
+          "docHash": "0xcc9a3f61a9cb63cf3fbb674203a1f7d33d1feffa13180699f870815f5b16dd67",
+          "txHash": "0x149a0c48fd2a483d98bb3a2d18e6fd20d8334e7e862aae49ac05684b22cc7aeb"
+        },
+        {
+          "step": "B5",
+          "docNo": "BBN-2026-0001",
+          "fileName": "B5_BBN-2026-0001.txt",
+          "docHash": "0x7c9b6828fa28e651e3b6ae746cda598f4c32cf98e25e64222c9ca2a0d9e014c1",
+          "txHash": "0xc589d920d6af7fcae79067a8d3ece3c29d77df6168971dbffed01d5eab9a8a0f"
+        },
+        {
+          "step": "B6",
+          "docNo": "QC-2026-0001",
+          "fileName": "B6_QC-2026-0001.txt",
+          "docHash": "0x9cccd7198a2b1846315fe2a89ccbb530780a2b904af7e1bb407ec39a9cb64e45",
+          "txHash": "0xccd0f9b2b2316e3806dd196fe22f1446ae4519cdb8b65a1939e4b76747564f7a"
+        }
+      ],
+      "docHash": "0x2c5ab59e9beacbbbdf00f8870ddd0abc2816331134e26d6a5cbea71c4fa9f38b",
+      "coaNo": "COA-2026-0001",
+      "testReportNo": "KN-2026-0001",
+      "testPassed": true,
+      "testDate": 1788541200,
+      "testDocHash": "0xf97301dbb5fed3fe0b7c19effc31db9e6fa61f8b2770d37b5e2cfcf4870ee6dc",
+      "testNotes": "Định lượng 99,4%, tạp chất liên quan 0,18%",
+      "originCountry": "Ấn Độ",
+      "customsDeclNo": "HQ-2026-0001",
+      "importDate": 1789405200,
+      "importDocHash": "0x16ec94da5c9d5e234f9454dc3c37e774c69a8ac0ad5a7348d1bec3bdc1bdb763",
+      "importPort": "Cảng Cát Lái, TP.HCM",
+      "designatedReceiver": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "receiverName": "Nhà máy Dược Delta",
+      "deliveryNoteNo": "PGH-2026-0001",
+      "transferDocHash": "0xcc9a3f61a9cb63cf3fbb674203a1f7d33d1feffa13180699f870815f5b16dd67",
+      "receivingNoteNo": "BBN-2026-0001",
+      "receivedDocHash": "0x7c9b6828fa28e651e3b6ae746cda598f4c32cf98e25e64222c9ca2a0d9e014c1",
+      "receivingNotes": "Đủ 20 thùng, niêm phong nguyên vẹn",
+      "qcReportNo": "QC-2026-0001",
+      "qcPassed": true,
+      "inspectDate": 1790182800,
+      "qcDocHash": "0x9cccd7198a2b1846315fe2a89ccbb530780a2b904af7e1bb407ec39a9cb64e45",
+      "qcNotes": "Định lượng 99,3%, đạt yêu cầu đưa vào sản xuất"
+    },
+    {
+      "id": 2,
+      "batchId": 2,
+      "batchNo": "AMO-ABC-20260905-002",
+      "materialName": "Amoxicillin trihydrate",
+      "storageConditions": "Nhiệt độ dưới 30°C, độ ẩm dưới 75%",
+      "mfgDate": 1788541200,
+      "expiryDate": 1883235600,
+      "quantity": 400,
+      "unit": "kg",
+      "packageCount": 16,
+      "packagingSpec": "16 thùng x 25 kg, lót 2 lớp túi PE",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0002",
+          "fileName": "B1_COA-2026-0002.txt",
+          "docHash": "0x2e3262890f58b2945e32cbccd95bf728656c5ece20ebc4932a2540d0bcfd4b23",
+          "txHash": "0xd99c6a0fc74ca62c4b4aded2f49743c59377a9f0130af0e0a27eb1cb0437d8c9"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0002",
+          "fileName": "B2_KN-2026-0002.txt",
+          "docHash": "0x51276c313c8d0819ca4a9b7f8935db2b30b0aee1561535a0d863be99482dd264",
+          "txHash": "0x524328317659fb8f520c361bec1d5e314f98f8e5ae4d9df08ffe62c064040142"
+        },
+        {
+          "step": "B3",
+          "docNo": "HQ-2026-0002",
+          "fileName": "B3_HQ-2026-0002.txt",
+          "docHash": "0x39c0e3d7cba4da0ab5ee064cb832ab5ba0a59fcdf0ac36d01541a1499f835e9c",
+          "txHash": "0xafdadfc7d03dc999fb1abad36d95e264aad21266e560b02e7d51b30ebf161fc1"
+        },
+        {
+          "step": "B4",
+          "docNo": "PGH-2026-0002",
+          "fileName": "B4_PGH-2026-0002.txt",
+          "docHash": "0x737483b46cd6e2db2b8aa2ab6659abd015d4faacc4e4efb723bf00b75e3162dc",
+          "txHash": "0x4f2d7e9c79ba74478cb94cfadf439d54c5959fa367777c709eff5f740032a428"
+        },
+        {
+          "step": "B5",
+          "docNo": "BBN-2026-0002",
+          "fileName": "B5_BBN-2026-0002.txt",
+          "docHash": "0x2cef72727e386b6ade4c700d95d5b505d612a56ed9c57982651061995ac36ee7",
+          "txHash": "0x2455192a08c1ac8887e2f0c96e6ecafc35081f5adb693f2a2d9b4b15ca8edd9c"
+        },
+        {
+          "step": "B6",
+          "docNo": "QC-2026-0002",
+          "fileName": "B6_QC-2026-0002.txt",
+          "docHash": "0x74284dbd43d38ca8669c1c867d882ecbb90800dfca79d31977d1ee1bdef1b43f",
+          "txHash": "0x639324ee450ec6e5f385a173c1211ba6dd2f9d1aec9bbb3a3f7a5d75be444259"
+        }
+      ],
+      "docHash": "0x2e3262890f58b2945e32cbccd95bf728656c5ece20ebc4932a2540d0bcfd4b23",
+      "coaNo": "COA-2026-0002",
+      "testReportNo": "KN-2026-0002",
+      "testPassed": true,
+      "testDate": 1788886800,
+      "testDocHash": "0x51276c313c8d0819ca4a9b7f8935db2b30b0aee1561535a0d863be99482dd264",
+      "testNotes": "Định lượng 99,0%, tạp chất liên quan 0,6%",
+      "originCountry": "Ấn Độ",
+      "customsDeclNo": "HQ-2026-0002",
+      "importDate": 1789664400,
+      "importDocHash": "0x39c0e3d7cba4da0ab5ee064cb832ab5ba0a59fcdf0ac36d01541a1499f835e9c",
+      "importPort": "Cảng Cát Lái, TP.HCM",
+      "designatedReceiver": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "receiverName": "Nhà máy Dược Delta",
+      "deliveryNoteNo": "PGH-2026-0002",
+      "transferDocHash": "0x737483b46cd6e2db2b8aa2ab6659abd015d4faacc4e4efb723bf00b75e3162dc",
+      "receivingNoteNo": "BBN-2026-0002",
+      "receivedDocHash": "0x2cef72727e386b6ade4c700d95d5b505d612a56ed9c57982651061995ac36ee7",
+      "receivingNotes": "Đủ 16 thùng, 2 thùng móp méo nhẹ",
+      "qcReportNo": "QC-2026-0002",
+      "qcPassed": false,
+      "inspectDate": 1790528400,
+      "qcDocHash": "0x74284dbd43d38ca8669c1c867d882ecbb90800dfca79d31977d1ee1bdef1b43f",
+      "qcNotes": "Tạp chất liên quan 1,2%, vượt giới hạn 1,0%; chuyển biệt trữ"
+    },
+    {
+      "id": 3,
+      "batchId": 3,
+      "batchNo": "PAR-ABC-20260910-003",
+      "materialName": "Paracetamol",
+      "storageConditions": "Nơi khô mát, dưới 30°C",
+      "mfgDate": 1788973200,
+      "expiryDate": 1915203600,
+      "quantity": 1000,
+      "unit": "kg",
+      "packageCount": 40,
+      "packagingSpec": "40 bao x 25 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0003",
+          "fileName": "B1_COA-2026-0003.txt",
+          "docHash": "0xda782d5d8f3fa979ea966e948829995d44927593ab23a8b9d001eb524b359d96",
+          "txHash": "0x9e1236f12da241f2a864dd931d575fbcf2330e5781ce640a5cf74e03948468d6"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0003",
+          "fileName": "B2_KN-2026-0003.txt",
+          "docHash": "0x01f560412c9dac79cf9d5cd286030367301b5f9d530480c55e5ccbc9f1a2b5f7",
+          "txHash": "0x9d70845ef3e95ce0190b2a6acba3fde4ab07dd6c7d2a22df13045efa93624f31"
+        }
+      ],
+      "docHash": "0xda782d5d8f3fa979ea966e948829995d44927593ab23a8b9d001eb524b359d96",
+      "coaNo": "COA-2026-0003",
+      "testReportNo": "KN-2026-0003",
+      "testPassed": false,
+      "testDate": 1789318800,
+      "testDocHash": "0x01f560412c9dac79cf9d5cd286030367301b5f9d530480c55e5ccbc9f1a2b5f7",
+      "testNotes": "Định lượng 97,1%, ngoài giới hạn 99,0–101,0%"
+    },
+    {
+      "id": 4,
+      "batchId": 4,
+      "batchNo": "CEF-ABC-20260915-004",
+      "materialName": "Cefuroxime axetil",
+      "storageConditions": "Dưới 25°C, tránh ẩm",
+      "mfgDate": 1789405200,
+      "expiryDate": 1852563600,
+      "quantity": 200,
+      "unit": "kg",
+      "packageCount": 10,
+      "packagingSpec": "10 thùng x 20 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0004",
+          "fileName": "B1_COA-2026-0004.txt",
+          "docHash": "0xda1a4b55c3fcdfc025543b6417132153826f386b5d9ae74a8c1cf3bb3be2d7d7",
+          "txHash": "0xec02026f540eede67bcef0b6192d3e8b2c26671e68c08c9c2b051bbf76ecd79a"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0004",
+          "fileName": "B2_KN-2026-0004.txt",
+          "docHash": "0xa40ffad0a168138924e63390b9f2a78eab1dc20c2c99869d4444911de725f22a",
+          "txHash": "0x3e6ff9e9c8a7ddc591cf67271a5c8ceebd2a5a0a2560cf55e7816b56c1e908f3"
+        },
+        {
+          "step": "B3",
+          "docNo": "HQ-2026-0003",
+          "fileName": "B3_HQ-2026-0003.txt",
+          "docHash": "0x74743021149a693cf909dcb799e7f5e220ce7a2227432daeb7dbbb4291c3fd69",
+          "txHash": "0x2c190bc9d59d401dc01cfd5902aa89e928d4937db3d7567f512b46377196fc41"
+        },
+        {
+          "step": "B4",
+          "docNo": "PGH-2026-0003",
+          "fileName": "B4_PGH-2026-0003.txt",
+          "docHash": "0xe964582651b254dc64ba988096c2c4eec5df85927948b07ca1ead3466feb643b",
+          "txHash": "0xcb5c67120591ef202291334a9661d4c8e2c51b4c00ee448404154eaf60cdfb12"
+        },
+        {
+          "step": "B5",
+          "docNo": "BBN-2026-0003",
+          "fileName": "B5_BBN-2026-0003.txt",
+          "docHash": "0x2c84d5d4cb3bb5ff46ffeaf4a9aae6d573f17d69f4526f4756247e0a94e8efcf",
+          "txHash": "0xdc91f8375bc95596e527385e7a50efc085a616d80bef2ad76b3229ddf129bd4e"
+        }
+      ],
+      "docHash": "0xda1a4b55c3fcdfc025543b6417132153826f386b5d9ae74a8c1cf3bb3be2d7d7",
+      "coaNo": "COA-2026-0004",
+      "testReportNo": "KN-2026-0004",
+      "testPassed": true,
+      "testDate": 1789750800,
+      "testDocHash": "0xa40ffad0a168138924e63390b9f2a78eab1dc20c2c99869d4444911de725f22a",
+      "testNotes": "Định lượng 98,7%",
+      "originCountry": "Ấn Độ",
+      "customsDeclNo": "HQ-2026-0003",
+      "importDate": 1790787600,
+      "importDocHash": "0x74743021149a693cf909dcb799e7f5e220ce7a2227432daeb7dbbb4291c3fd69",
+      "importPort": "Sân bay Tân Sơn Nhất, TP.HCM",
+      "designatedReceiver": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "receiverName": "Nhà máy Dược Delta",
+      "deliveryNoteNo": "PGH-2026-0003",
+      "transferDocHash": "0xe964582651b254dc64ba988096c2c4eec5df85927948b07ca1ead3466feb643b",
+      "receivingNoteNo": "BBN-2026-0003",
+      "receivedDocHash": "0x2c84d5d4cb3bb5ff46ffeaf4a9aae6d573f17d69f4526f4756247e0a94e8efcf",
+      "receivingNotes": "Đủ 10 thùng, chờ kiểm tra chất lượng"
+    },
+    {
+      "id": 5,
+      "batchId": 5,
+      "batchNo": "AZI-ABC-20261001-005",
+      "materialName": "Azithromycin dihydrate",
+      "storageConditions": "Nơi khô mát, dưới 25°C",
+      "mfgDate": 1790787600,
+      "expiryDate": 1885482000,
+      "quantity": 150,
+      "unit": "kg",
+      "packageCount": 6,
+      "packagingSpec": "6 thùng x 25 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0005",
+          "fileName": "B1_COA-2026-0005.txt",
+          "docHash": "0x979ecce573a66603c68679bb6c69856593c8c63e91b5cf5b1a902a9e55432add",
+          "txHash": "0x6649e015d570c37b0eecf2a340bc039115af14572bf774213547087600dc8c6d"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0005",
+          "fileName": "B2_KN-2026-0005.txt",
+          "docHash": "0xd5184fe450552d1d22b205b4c5e2a32695e053c80534b1dc570dcc8206170611",
+          "txHash": "0x879615ca4d56a659ef4d55d91beae7735c38efd63a103bfffc40eb9575d0e0b7"
+        },
+        {
+          "step": "B3",
+          "docNo": "HQ-2026-0004",
+          "fileName": "B3_HQ-2026-0004.txt",
+          "docHash": "0xedc8a0b6d283ca43b84013a0de11c74bacbd9bdf0b644653ff135ad7c385623b",
+          "txHash": "0x1a5e1f9c42838eae661abb105c8d9b906d82dd4b6f1710e4ec75551dddf9fc96"
+        },
+        {
+          "step": "B4",
+          "docNo": "PGH-2026-0004",
+          "fileName": "B4_PGH-2026-0004.txt",
+          "docHash": "0xa444bbde9bf98647cf63b11676c12d73c623ebc93829d6f77e4de6cddbd87f78",
+          "txHash": "0xdb454d65d0d3e28d979005bbf879be4d0279ec55168bb47e69a75f4000b87f55"
+        },
+        {
+          "step": "B4-huy",
+          "docNo": "BBH-2026-0001",
+          "fileName": "B4-huy_BBH-2026-0001.txt",
+          "docHash": "0xc7b798d118d3f9c5d6e8b27b05dcb5ee7a1e57df194d6cc974ac5f0095e30d76",
+          "txHash": "0x386fcffba1fcf25e29fce886daf738a6ba3794e389b7b29174104247e64b2ee8"
+        },
+        {
+          "step": "B4",
+          "docNo": "PGH-2026-0005",
+          "fileName": "B4_PGH-2026-0005.txt",
+          "docHash": "0xd3519f416349c861bcf4b302366dce617cff38ba49f07034f488b4eadf47e1c6",
+          "txHash": "0x1d6783e84d4503a40bfb86583af3656f52b85ab26daff0225bf455ea422c78e7"
+        }
+      ],
+      "docHash": "0x979ecce573a66603c68679bb6c69856593c8c63e91b5cf5b1a902a9e55432add",
+      "coaNo": "COA-2026-0005",
+      "testReportNo": "KN-2026-0005",
+      "testPassed": true,
+      "testDate": 1791133200,
+      "testDocHash": "0xd5184fe450552d1d22b205b4c5e2a32695e053c80534b1dc570dcc8206170611",
+      "testNotes": "Định lượng 98,9%",
+      "originCountry": "Ấn Độ",
+      "customsDeclNo": "HQ-2026-0004",
+      "importDate": 1791910800,
+      "importDocHash": "0xedc8a0b6d283ca43b84013a0de11c74bacbd9bdf0b644653ff135ad7c385623b",
+      "importPort": "Cảng Cát Lái, TP.HCM",
+      "designatedReceiver": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "receiverName": "Nhà máy Dược Delta",
+      "deliveryNoteNo": "PGH-2026-0005",
+      "transferDocHash": "0xd3519f416349c861bcf4b302366dce617cff38ba49f07034f488b4eadf47e1c6",
+      "cancelReason": "Chọn nhầm nhà máy nhận; đơn hàng thuộc Nhà máy Dược Delta",
+      "cancelDocHash": "0xc7b798d118d3f9c5d6e8b27b05dcb5ee7a1e57df194d6cc974ac5f0095e30d76"
+    },
+    {
+      "id": 6,
+      "batchId": 6,
+      "batchNo": "MET-ABC-20261008-006",
+      "materialName": "Metformin hydrochloride",
+      "storageConditions": "Dưới 30°C, tránh ẩm",
+      "mfgDate": 1791392400,
+      "expiryDate": 1917622800,
+      "quantity": 800,
+      "unit": "kg",
+      "packageCount": 32,
+      "packagingSpec": "32 thùng x 25 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0006",
+          "fileName": "B1_COA-2026-0006.txt",
+          "docHash": "0x22941a536b1b247406f6fe4ac20a54544755477a6c9afa9942c2b34683ee0cae",
+          "txHash": "0x7b821ea3a2d49827179e9c306ea1ac9b4610409ec792adfb4563a367536f770c"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0006",
+          "fileName": "B2_KN-2026-0006.txt",
+          "docHash": "0x4da625da512e0ee2cc42c44bf26803a4fc9d8060192c2d535beeb03dcef1315d",
+          "txHash": "0xf2dcb8e2af706d5bb994db8a19d2b43c17d3c237cfa8b8462995424857f7deed"
+        },
+        {
+          "step": "B3",
+          "docNo": "HQ-2026-0005",
+          "fileName": "B3_HQ-2026-0005.txt",
+          "docHash": "0xd67db6afc039077aa34bd341f070939fa8991e4304affb8b650843e5d12fd9a9",
+          "txHash": "0xf683397bbf96be9ba94378cc523cc22a2fa0dd1863839571a63d0ec8784f84a6"
+        }
+      ],
+      "docHash": "0x22941a536b1b247406f6fe4ac20a54544755477a6c9afa9942c2b34683ee0cae",
+      "coaNo": "COA-2026-0006",
+      "testReportNo": "KN-2026-0006",
+      "testPassed": true,
+      "testDate": 1791738000,
+      "testDocHash": "0x4da625da512e0ee2cc42c44bf26803a4fc9d8060192c2d535beeb03dcef1315d",
+      "testNotes": "Định lượng 99,3%",
+      "originCountry": "Ấn Độ",
+      "customsDeclNo": "HQ-2026-0005",
+      "importDate": 1792602000,
+      "importDocHash": "0xd67db6afc039077aa34bd341f070939fa8991e4304affb8b650843e5d12fd9a9",
+      "importPort": "Cảng Cát Lái, TP.HCM"
+    },
+    {
+      "id": 7,
+      "batchId": 7,
+      "batchNo": "CIP-ABC-20261015-007",
+      "materialName": "Ciprofloxacin hydrochloride",
+      "storageConditions": "Nơi khô mát, dưới 25°C, tránh ánh sáng",
+      "mfgDate": 1791997200,
+      "expiryDate": 1886691600,
+      "quantity": 120,
+      "unit": "kg",
+      "packageCount": 6,
+      "packagingSpec": "6 thùng x 20 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0007",
+          "fileName": "B1_COA-2026-0007.txt",
+          "docHash": "0x19f96065af67ea257a2bbff5a67c18547a08c75ad4ea7e50c1837126b130046c",
+          "txHash": "0xcd25619ee77693e87f1b6363fbf130eaa8a93e2bd541dc62e2afcf0a62d8171f"
+        },
+        {
+          "step": "B2",
+          "docNo": "KN-2026-0007",
+          "fileName": "B2_KN-2026-0007.txt",
+          "docHash": "0x3ea67a44cf4c2d0b4a78709d4606d0e49fd1750b0c1ae1acf7b0aac991cf29c4",
+          "txHash": "0x7b3bee353e609727db1d35c17b0655f5a24347ed2610bdc8f7fed665b89619a5"
+        }
+      ],
+      "docHash": "0x19f96065af67ea257a2bbff5a67c18547a08c75ad4ea7e50c1837126b130046c",
+      "coaNo": "COA-2026-0007",
+      "testReportNo": "KN-2026-0007",
+      "testPassed": true,
+      "testDate": 1792429200,
+      "testDocHash": "0x3ea67a44cf4c2d0b4a78709d4606d0e49fd1750b0c1ae1acf7b0aac991cf29c4",
+      "testNotes": "Định lượng 99,1%"
+    },
+    {
+      "id": 8,
+      "batchId": 8,
+      "batchNo": "IBU-ABC-20261020-008",
+      "materialName": "Ibuprofen",
+      "storageConditions": "Dưới 30°C",
+      "mfgDate": 1792429200,
+      "expiryDate": 1918659600,
+      "quantity": 600,
+      "unit": "kg",
+      "packageCount": 24,
+      "packagingSpec": "24 thùng x 25 kg",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Bộ dữ liệu minh họa (scripts/dataset/dataset.js)",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0008",
+          "fileName": "B1_COA-2026-0008.txt",
+          "docHash": "0x2102544e02d165a06e82d09bbb95b9f5ac10cf28c563a2877388cc49840ca9e0",
+          "txHash": "0x2f4c1be897d768980564105b6dc9705cdca925c3f82e49aa1378dea778009f60"
+        }
+      ],
+      "docHash": "0x2102544e02d165a06e82d09bbb95b9f5ac10cf28c563a2877388cc49840ca9e0",
+      "coaNo": "COA-2026-0008"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "0x1de008e3cf96427e884820277794908aef87c24b",
+      "address": "0x1de008e3cf96427e884820277794908aef87c24b",
+      "role": 1,
+      "roleName": "Admin",
+      "name": "Quản trị hệ thống PharmaChain",
+      "licenseNo": null,
+      "licenseHash": null,
+      "grantedAt": 1793870920,
+      "txHash": "0x8b6c21aef809ea99febf7d9b211fb8bbc31ffe388f3223a525d193d9c6a44edd"
+    },
+    {
+      "id": "0xd905154e0eec719915bea991f465c9e44e36e2ad",
+      "address": "0xd905154e0eec719915bea991f465c9e44e36e2ad",
+      "role": 2,
+      "roleName": "Manufacturer",
+      "name": "Công ty Hóa dược ABC",
+      "licenseNo": "GP-2026-0001",
+      "licenseHash": "0x7de1c635633df7811baab6aa1ca2d35ac4c14ac417784167a5d51f8ad4366336",
+      "operatingSite": "Lô C2, Khu công nghiệp Hóa dược, Mumbai, Ấn Độ",
+      "grantedAt": 1793870984,
+      "txHash": "0x35ee5aa0d9f6cf8770ab03d0a06a933b54d144f2b2a577571236bb776ca1951d"
+    },
+    {
+      "id": "0x1dc3d352e665e2d5300c110085e9ee652fae9c80",
+      "address": "0x1dc3d352e665e2d5300c110085e9ee652fae9c80",
+      "role": 3,
+      "roleName": "Inspector",
+      "name": "Trung tâm Kiểm nghiệm Beta",
+      "licenseNo": "GP-2026-0002",
+      "licenseHash": "0x9553d149864084d9cbfc119489064fcfb620437682cc1e71bb22328443267467",
+      "operatingSite": "Số 12 đường Số 3, Quận 7, TP.HCM",
+      "grantedAt": 1793871044,
+      "txHash": "0x11b012de9c063671a4a18fafbe256e5ac7fcc9f5722c8710a57c933b52c962a5"
+    },
+    {
+      "id": "0xd8dfa4e8f156e7f4d21291aeff866cf2961574f0",
+      "address": "0xd8dfa4e8f156e7f4d21291aeff866cf2961574f0",
+      "role": 4,
+      "roleName": "Importer",
+      "name": "Công ty Nhập khẩu Gamma",
+      "licenseNo": "GP-2026-0003",
+      "licenseHash": "0x562463fa9907974452a720b59f048223a98cc7be7ad46e0a28f50f5dbb902fdf",
+      "operatingSite": "Số 45 đường Nguyễn Tất Thành, Quận 4, TP.HCM",
+      "grantedAt": 1793871078,
+      "txHash": "0x394f5d947a6679bbd4ee2125fed9df9ca71fe88bc6cc8be86775a8c8763ae21d"
+    },
+    {
+      "id": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "address": "0x7bdaab82144b2dd65604996941de35a22be7d0b9",
+      "role": 5,
+      "roleName": "Receiver",
+      "name": "Nhà máy Dược Delta",
+      "licenseNo": "GP-2026-0004",
+      "licenseHash": "0x813f4aaa1b1e9b92a810a0f7c35345e0f0f12fc89cd3fdcb7c1112e93e5e0035",
+      "operatingSite": "Khu công nghiệp Tân Tạo, Quận Bình Tân, TP.HCM",
+      "grantedAt": 1793871090,
+      "txHash": "0xd60fa7bda676ea33c6c868d698238255adaf45e34899d0a4448b3b88c1e5ff60"
+    },
+    {
+      "id": "0x07915dd89f92b5eac56b0d4c7eba358e6857cbd1",
+      "address": "0x07915dd89f92b5eac56b0d4c7eba358e6857cbd1",
+      "role": 5,
+      "roleName": "Receiver",
+      "name": "Nhà máy Dược Epsilon",
+      "licenseNo": "GP-2026-0005",
+      "licenseHash": "0x288f3c8afc51de40f80d0c192cac56f0c781d1942176d6c69191f4c05df7c342",
+      "operatingSite": "Khu công nghiệp Việt Nam - Singapore, Bình Dương",
+      "grantedAt": 1793871160,
+      "txHash": "0x1bca9ea44eb0eaaf7d15ab6ae661496ce8e8df45f08aa2bb111cc0390af9bd91"
+    }
+  ]
 }

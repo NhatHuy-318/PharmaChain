@@ -253,7 +253,7 @@ async function loadAllData(chain, data) {
     let receiverOrgs = [];
     try {
       const orgs = await data.getOrganizations();
-      receiverOrgs = orgs.filter(o => o.role === 'Receiver');
+      receiverOrgs = orgs.filter(o => Number(o.role) === Role.Receiver);
     } catch (_) { /* ignore */ }
 
     renderImportQueue(importQueue);

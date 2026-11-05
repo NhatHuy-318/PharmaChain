@@ -8,6 +8,7 @@ import { RSK_TESTNET_CONFIG, isRskTestnet } from '../config/network.js';
 import { Role, RoleName } from '../constants/roles.js';
 import { eventBus } from '../utils/eventEmitter.js';
 import { i18n } from '../i18n/vi.js';
+import { web3ChainAdapter } from './chain/web3Chain.adapter.js';
 
 // Danh sách ví mẫu mặc định cho Mock Mode
 export const MOCK_ACCOUNTS = Object.freeze([
@@ -53,6 +54,50 @@ class WalletService {
 
     // Khởi tạo trạng thái ban đầu từ localStorage nếu có
     this._restoreSession();
+    if (ENV.APP_MODE === 'live' && typeof window !== 'undefined' && window.ethereum) {
+      this._syncLiveSession();
+    }
+  }
+
+  /**
+   * Live mode: vai trò và tên đơn vị luôn đọc từ contract (event RoleGranted),
+   * không tin giá trị cũ trong localStorage vì Admin có thể đã cấp/thu hồi quyền.
+   */
+  async _loadOnChainProfile() {
+    try {
+      this.role = await web3ChainAdapter.getRole(this.address);
+    } catch (err) {
+      console.warn('Không đọc được vai trò on-chain (kiểm tra mạng và CONTRACT_ADDRESS):', err);
+      this.role = Role.None;
+    }
+    // Tên đơn vị đọc từ event (qua Blockscout); lỗi ở đây không được làm mất vai trò đã đọc đúng
+    try {
+      this.orgName = this.role ? await web3ChainAdapter.getOrgName(this.address) : '';
+    } catch (err) {
+      console.warn('Không đọc được tên đơn vị từ event RoleGranted:', err);
+      this.orgName = '';
+    }
+  }
+
+  /** Khi mở trang: đối chiếu phiên đã lưu với ví MetaMask hiện tại, lệch thì cập nhật và tải lại trang */
+  async _syncLiveSession() {
+    this._setupMetaMaskListeners();
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    if (!accounts.length) {
+      if (this.address) this.disconnect();
+      return;
+    }
+    // Có cả chainId: đổi mạng lúc trang đang đóng thì thanh điều hướng vẫn phải vẽ lại theo mạng mới
+    const snapshot = () => JSON.stringify([this.address, this.role, this.orgName, this.chainId]);
+    const before = snapshot();
+    this.address = accounts[0].toLowerCase();
+    this.chainId = parseInt(await window.ethereum.request({ method: 'eth_chainId' }), 16);
+    this.isConnected = true;
+    await this._loadOnChainProfile();
+    this._saveSession();
+    if (snapshot() !== before) {
+      window.location.reload();
+    }
   }
 
   _restoreSession() {
@@ -138,8 +183,9 @@ class WalletService {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       const rawChainId = await window.ethereum.request({ method: 'eth_chainId' });
       this.chainId = parseInt(rawChainId, 16);
-      this.address = accounts[0];
+      this.address = accounts[0].toLowerCase();
       this.isConnected = true;
+      await this._loadOnChainProfile();
 
       this._setupMetaMaskListeners();
       this._saveSession();
@@ -148,6 +194,7 @@ class WalletService {
         address: this.address,
         role: this.role,
         chainId: this.chainId,
+        orgName: this.orgName,
       });
 
       return { address: this.address, role: this.role, chainId: this.chainId };
@@ -239,24 +286,22 @@ class WalletService {
     if (typeof window.ethereum === 'undefined' || this._listenersAttached) return;
     this._listenersAttached = true;
 
-    window.ethereum.on('accountsChanged', (accounts) => {
+    // Đổi ví hoặc đổi mạng thì tải lại trang để role guard và dữ liệu của trang chạy lại theo ví mới
+    window.ethereum.on('accountsChanged', async (accounts) => {
       if (accounts.length === 0) {
         this.disconnect();
       } else {
-        this.address = accounts[0];
+        this.address = accounts[0].toLowerCase();
+        await this._loadOnChainProfile();
         this._saveSession();
-        eventBus.emit('wallet:changed', {
-          address: this.address,
-          role: this.role,
-          chainId: this.chainId,
-        });
       }
+      window.location.reload();
     });
 
     window.ethereum.on('chainChanged', (rawChainId) => {
       this.chainId = parseInt(rawChainId, 16);
       this._saveSession();
-      eventBus.emit('network:changed', { chainId: this.chainId });
+      window.location.reload();
     });
   }
 

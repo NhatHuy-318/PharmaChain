@@ -66,7 +66,8 @@ export async function initAdminPage() {
           orgs.map(async (org) => {
             const currentRole = await chain.getRole(org.address);
             const roleName = RoleName[currentRole] || 'None';
-            const isSelfAdmin = org.address.toLowerCase() === '0x1111111111111111111111111111111111111111';
+            // Contract không cho thu hồi Admin; nhận Admin theo vai trò on-chain, đúng cả mock lẫn live
+            const isSelfAdmin = currentRole === Role.Admin;
 
             return `
               <tr>

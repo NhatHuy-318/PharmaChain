@@ -246,10 +246,18 @@ export class BatchService {
     // 1. Đọc dữ liệu on-chain chuẩn
     const onChainBatch = await this.chain.getBatch(bId);
     const isExpired = await this.chain.isExpired(bId);
-    const events = await this.chain.getBatchEvents(bId);
+    const chainEvents = await this.chain.getBatchEvents(bId);
 
     // 2. Đọc metadata off-chain
     const metadata = (await this.data.getBatchMetadata(bId)) || {};
+
+    // Tên file hồ sơ chỉ lưu off-chain (metadata.documents), ghép vào event theo docHash
+    const docs = metadata.documents || [];
+    const events = chainEvents.map((e) => {
+      if (e.docName) return e;
+      const doc = docs.find((d) => d.docHash?.toLowerCase() === e.docHash?.toLowerCase());
+      return doc ? { ...e, docName: doc.fileName, docNo: doc.docNo } : e;
+    });
 
     // 3. Tra cứu tên các tổ chức liên quan
     const [mfgOrg, impOrg, recOrg] = await Promise.all([
