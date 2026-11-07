@@ -58,13 +58,13 @@ export const DataSchemas = Object.freeze({
     docNumber: 'string', // Số hiệu văn bản (vd: KN-0932, HQ-2026-9981)
     batchId: 'number', // Liên kết trực tiếp tới batchId
     batchNo: 'string', // Số hiệu lô
-    docHash: 'string', // Mã băm SHA-256 on-chain (bytes32, 0x + 64 ký tự hex)
+    docHash: 'string', // Hash SHA-256 on-chain (bytes32, 0x + 64 ký tự hex)
     fileName: 'string', // Tên file gốc (vd: COA_PEN-K-20260901-001.txt)
     fileSize: 'number', // Kích thước byte
     uploadedAt: 'number', // Thời điểm tính băm và tải lên (Unix timestamp)
     uploadedBy: 'string', // Địa chỉ ví người tải lên
     issuingOrg: 'string', // Đơn vị phát hành (tùy chọn, để null nếu chưa rõ)
-    verificationDisclaimer: 'string', // "Mã băm SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
+    verificationDisclaimer: 'string', // "Hash SHA-256 xác minh tính toàn vẹn byte của file, không thay thế chứng thực pháp lý"
   },
 
   /**
@@ -169,7 +169,7 @@ export const DataSchemas = Object.freeze({
     address: 'string', // Địa chỉ ví (0x...)
     role: 'number', // Enum Role
     name: 'string', // Tên tổ chức/doanh nghiệp
-    licenseHash: 'string', // Mã băm hồ sơ pháp lý trên smart contract
+    licenseHash: 'string', // Hash hồ sơ pháp lý trên smart contract
     licenseNumber: 'string | null', // Số giấy phép (nếu có nguồn xác thực)
     operatingSite: 'string | null', // Địa chỉ trụ sở/nhà máy
     contactEmail: 'string | null',

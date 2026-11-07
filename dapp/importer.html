@@ -2,6 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <!-- Mở sẵn kết nối tới RPC của RSK, Blockscout và CDN web3: lần gọi đầu tiên đỡ mất khoảng 1–2 giây -->
+  <link rel="preconnect" href="https://public-node.testnet.rsk.co" crossorigin>
+  <link rel="preconnect" href="https://rootstock-testnet.blockscout.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Nhập khẩu (Importer) - PharmaChain</title>
   <link rel="stylesheet" href="css/tokens.css">
@@ -87,7 +91,7 @@
             <div>
               <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 3: Khai báo Nhập khẩu</h3>
               <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
-                Ghi nhận thông tin hải quan và tải lên Tờ khai Hải quan; mã băm được lưu on-chain.
+                Ghi nhận thông tin hải quan và tải lên Tờ khai Hải quan; hash được lưu on-chain.
               </p>
             </div>
             <span class="badge badge-status-imported">Trạng thái đích: Imported</span>
@@ -221,7 +225,7 @@
             <div>
               <h3 style="margin: 0; color: var(--color-primary-dark);">Bước 4: Khởi tạo Chuyển giao</h3>
               <p class="text-muted" style="font-size: var(--font-size-xs); margin: 0;">
-                Chỉ định đơn vị nhận hàng và tải Phiếu giao hàng; mã băm SHA-256 lưu on-chain.
+                Chỉ định đơn vị nhận hàng và tải Phiếu giao hàng; hash SHA-256 lưu on-chain.
               </p>
             </div>
             <span class="badge badge-status-intransfer">Trạng thái đích: InTransfer</span>

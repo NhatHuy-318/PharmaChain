@@ -2,6 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <!-- Mở sẵn kết nối tới RPC của RSK, Blockscout và CDN web3: lần gọi đầu tiên đỡ mất khoảng 1–2 giây -->
+  <link rel="preconnect" href="https://public-node.testnet.rsk.co" crossorigin>
+  <link rel="preconnect" href="https://rootstock-testnet.blockscout.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PharmaChain - Truy xuất nguồn gốc nguyên liệu dược phẩm trên Blockchain</title>
   <link rel="stylesheet" href="css/tokens.css">
@@ -312,7 +316,7 @@
         </h1>
 
         <p class="hero-desc">
-          Hệ thống phi tập trung ghi nhận bất biến toàn bộ vòng đời nguyên liệu dược từ Nhà sản xuất → Kiểm nghiệm → Nhập khẩu → Nhà máy tiếp nhận. Đối chiếu tính toàn vẹn hồ sơ theo thời gian thực bằng mã băm <strong>SHA-256</strong>.
+          Hệ thống phi tập trung ghi nhận bất biến toàn bộ vòng đời nguyên liệu dược từ Nhà sản xuất → Kiểm nghiệm → Nhập khẩu → Nhà máy tiếp nhận. Đối chiếu tính toàn vẹn hồ sơ theo thời gian thực bằng hash <strong>SHA-256</strong>.
         </p>
 
         <div class="hero-cta-group">
@@ -392,7 +396,7 @@
         <div class="section-header">
           <div class="section-subtitle">Quy trình vận hành chuẩn</div>
           <h2 class="section-title">6 Bước Ghi nhận & Kiểm soát Lô nguyên liệu</h2>
-          <p class="text-lead" style="margin: 0 auto;">Mỗi sự kiện on-chain liên kết với mã băm của văn bản nghiệp vụ tương ứng</p>
+          <p class="text-lead" style="margin: 0 auto;">Mỗi sự kiện on-chain liên kết với hash của văn bản nghiệp vụ tương ứng</p>
         </div>
 
         <div class="timeline-steps-grid">

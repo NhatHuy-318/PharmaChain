@@ -1,6 +1,6 @@
 /**
  * Hash Service
- * Tính toán mã băm SHA-256 bảo đảm tính toàn vẹn byte của tài liệu hồ sơ
+ * Tính toán hash SHA-256 bảo đảm tính toàn vẹn byte của tài liệu hồ sơ
  * Sử dụng Web Crypto API trong trình duyệt (hoặc node:crypto trong môi trường kiểm thử)
  */
 
@@ -9,7 +9,7 @@ import { i18n } from '../i18n/vi.js';
 
 export class HashService {
   /**
-   * Tính mã băm SHA-256 từ File, Blob, ArrayBuffer hoặc String
+   * Tính hash SHA-256 từ File, Blob, ArrayBuffer hoặc String
    * Trả về định dạng bytes32: "0x" + 64 ký tự hex chữ thường
    */
   static async computeSHA256(input) {
@@ -62,7 +62,7 @@ export class HashService {
    */
   static async verifyFileHash(file, expectedHash) {
     if (!expectedHash || !isValidBytes32(expectedHash)) {
-      throw new Error('Mã băm kỳ vọng (on-chain hash) không đúng định dạng bytes32.');
+      throw new Error('Hash kỳ vọng (on-chain hash) không đúng định dạng bytes32.');
     }
 
     const calculatedHash = await HashService.computeSHA256(file);

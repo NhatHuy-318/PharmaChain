@@ -60,13 +60,13 @@ export async function initManufacturerPage() {
       if (file) {
         selectedCoaFile = file;
         try {
-          showToast('Đang tính mã băm SHA-256 của tài liệu COA...', 'info');
+          showToast('Đang tính hash SHA-256 của tài liệu COA...', 'info');
           computedCoaHash = await HashService.computeSHA256(file);
           if (hashPreview) {
-            hashPreview.textContent = `Mã băm COA: ${computedCoaHash}`;
+            hashPreview.textContent = `Hash COA: ${computedCoaHash}`;
             hashPreview.classList.add('active');
           }
-          showToast('Tính toán mã băm SHA-256 thành công!', 'success');
+          showToast('Tính toán hash SHA-256 thành công!', 'success');
         } catch (err) {
           showToast(err.message, 'error');
         }
@@ -182,7 +182,7 @@ export async function initManufacturerPage() {
         return;
       }
       if (!computedCoaHash) {
-        showToast('Vui lòng tải lên tài liệu COA để tính mã băm SHA-256.', 'warning');
+        showToast('Vui lòng tải lên tài liệu COA để tính hash SHA-256.', 'warning');
         return;
       }
 

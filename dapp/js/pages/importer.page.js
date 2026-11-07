@@ -61,11 +61,11 @@ export async function initImporterPage() {
           showToast('Đang băm SHA-256 tờ khai hải quan...', 'info');
           importDocHash = await HashService.computeSHA256(file);
           if (importHashPreview) {
-            importHashPreview.textContent = `Mã băm SHA-256: ${importDocHash}`;
+            importHashPreview.textContent = `Hash SHA-256: ${importDocHash}`;
             importHashPreview.className = 'file-hash-preview hash-ready';
           }
         } catch (err) {
-          showToast('Lỗi tính mã băm: ' + err.message, 'error');
+          showToast('Lỗi tính hash: ' + err.message, 'error');
         }
       }
     });
@@ -82,11 +82,11 @@ export async function initImporterPage() {
           showToast('Đang băm SHA-256 phiếu giao hàng...', 'info');
           transferDocHash = await HashService.computeSHA256(file);
           if (transferHashPreview) {
-            transferHashPreview.textContent = `Mã băm SHA-256: ${transferDocHash}`;
+            transferHashPreview.textContent = `Hash SHA-256: ${transferDocHash}`;
             transferHashPreview.className = 'file-hash-preview hash-ready';
           }
         } catch (err) {
-          showToast('Lỗi tính mã băm: ' + err.message, 'error');
+          showToast('Lỗi tính hash: ' + err.message, 'error');
         }
       }
     });
@@ -102,7 +102,7 @@ export async function initImporterPage() {
       e.preventDefault();
       const btn = $('#btn-submit-import');
       if (!importDocHash || !importSelectedFile) {
-        showToast('Vui lòng tải file Tờ khai hải quan và chờ hệ thống tính mã băm.', 'warning');
+        showToast('Vui lòng tải file Tờ khai hải quan và chờ hệ thống tính hash.', 'warning');
         return;
       }
 
@@ -169,7 +169,7 @@ export async function initImporterPage() {
       e.preventDefault();
       const btn = $('#btn-submit-transfer');
       if (!transferDocHash || !transferSelectedFile) {
-        showToast('Vui lòng tải file Phiếu giao hàng và chờ hệ thống tính mã băm.', 'warning');
+        showToast('Vui lòng tải file Phiếu giao hàng và chờ hệ thống tính hash.', 'warning');
         return;
       }
 
@@ -230,7 +230,7 @@ async function loadAllData(chain, data) {
   if (!currentAddr) return;
 
   try {
-    const allBatches = await chain.getAllBatches();
+    const allBatches = await batchService.listBatches();
 
     // Lô cần nhập khẩu: importer là mình, status = Tested
     const importQueue = allBatches.filter(

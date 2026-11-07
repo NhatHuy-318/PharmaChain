@@ -2,6 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <!-- Mở sẵn kết nối tới RPC của RSK, Blockscout và CDN web3: lần gọi đầu tiên đỡ mất khoảng 1–2 giây -->
+  <link rel="preconnect" href="https://public-node.testnet.rsk.co" crossorigin>
+  <link rel="preconnect" href="https://rootstock-testnet.blockscout.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Nhà sản xuất (Manufacturer) - PharmaChain</title>
   <link rel="stylesheet" href="css/tokens.css">
@@ -207,7 +211,7 @@
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
               </svg>
-              <div class="file-upload-info">Bấm để tải file COA lên (Hệ thống tính mã băm SHA-256 tức thì)</div>
+              <div class="file-upload-info">Bấm để tải file COA lên (Hệ thống tính hash SHA-256 tức thì)</div>
               <input type="file" id="mfg-coa-file" style="display: none;" required />
             </div>
             <div id="mfg-coa-hash-preview" class="file-hash-preview"></div>

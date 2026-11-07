@@ -489,6 +489,30 @@
       ],
       "docHash": "0x2102544e02d165a06e82d09bbb95b9f5ac10cf28c563a2877388cc49840ca9e0",
       "coaNo": "COA-2026-0008"
+    },
+    {
+      "batchNo": "ASC-ABC-20261105-009",
+      "materialName": "Ascorbic acid (Vitamin C)",
+      "storageConditions": "Nơi khô mát, dưới 25°C",
+      "docHash": "0x0be944b336f241e1c5d900c653c5afc9de54ba5ce24af1ccb42b47c428b71bfe",
+      "quantity": 0,
+      "unit": "kg",
+      "packageCount": 0,
+      "packagingSpec": null,
+      "countryOfOrigin": "Ấn Độ",
+      "notes": "",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "materialCode": null,
+      "grade": null,
+      "pharmacopoeiaStandard": null,
+      "productSpecRef": null,
+      "packageType": null,
+      "sealNumber": null,
+      "netWeight": null,
+      "grossWeight": null,
+      "isMock": false,
+      "id": 9,
+      "batchId": 9
     }
   ],
   "organizations": [

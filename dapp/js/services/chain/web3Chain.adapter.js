@@ -105,6 +105,7 @@ export class Web3ChainAdapter extends IChainAdapter {
     this._ready = null;
     this.deployBlock = ENV.DEPLOY_BLOCK || 0;
     this.logsApiUrl = ENV.LOGS_API_URL || '';
+    this._expiry = new Map(); // batchId -> expiryDate của các lô đã đọc
   }
 
   // Ví và trang cùng gọi ngay khi tải; dùng chung một lần khởi tạo để không tạo hai bản contract
@@ -229,7 +230,12 @@ export class Web3ChainAdapter extends IChainAdapter {
 
   async getBatch(batchId) {
     const c = await this._ensureContract();
-    return toBatch(await this._call(c.methods.getBatch(batchId)));
+    return this._remember(toBatch(await this._call(c.methods.getBatch(batchId))));
+  }
+
+  _remember(batch) {
+    this._expiry.set(batch.id, batch.expiryDate);
+    return batch;
   }
 
   async getBatchCount() {
@@ -240,7 +246,7 @@ export class Web3ChainAdapter extends IChainAdapter {
   async getBatches(fromId, count) {
     const c = await this._ensureContract();
     const page = await this._call(c.methods.getBatches(fromId, count));
-    return page.map(toBatch);
+    return page.map((b) => this._remember(toBatch(b)));
   }
 
   async getBatchIdByNo(batchNo) {
@@ -249,6 +255,11 @@ export class Web3ChainAdapter extends IChainAdapter {
   }
 
   async isExpired(batchId) {
+    // Mỗi lời gọi RPC tới public-node mất khoảng 200 ms; trang danh sách gọi hàm này cho từng lô.
+    // Lô vừa đọc qua getBatch/getBatches đã có expiryDate, nên tính tại chỗ theo đúng quy tắc của
+    // contract (block.timestamp > expiryDate); đồng hồ máy lệch vài giây không đáng kể so với hạn dùng.
+    const expiry = this._expiry.get(Number(batchId));
+    if (expiry !== undefined) return Math.floor(Date.now() / 1000) > expiry;
     const c = await this._ensureContract();
     return Boolean(await this._call(c.methods.isExpired(batchId)));
   }

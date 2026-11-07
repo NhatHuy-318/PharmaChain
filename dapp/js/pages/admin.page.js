@@ -37,13 +37,13 @@ export async function initAdminPage() {
       const file = e.target.files?.[0];
       if (file) {
         try {
-          showToast('Đang tính mã băm SHA-256 từ giấy phép...', 'info');
+          showToast('Đang tính hash SHA-256 từ giấy phép...', 'info');
           computedLicenseHash = await HashService.computeSHA256(file);
           if (hashPreview) {
-            hashPreview.textContent = `Mã băm SHA-256: ${computedLicenseHash}`;
+            hashPreview.textContent = `Hash SHA-256: ${computedLicenseHash}`;
             hashPreview.classList.add('active');
           }
-          showToast('Đã tạo mã băm giấy phép thành công!', 'success');
+          showToast('Đã tạo hash giấy phép thành công!', 'success');
         } catch (err) {
           showToast(err.message, 'error');
         }
@@ -142,7 +142,7 @@ export async function initAdminPage() {
         return;
       }
       if (!computedLicenseHash) {
-        showToast('Vui lòng tải lên file giấy phép pháp lý để tính mã băm SHA-256.', 'warning');
+        showToast('Vui lòng tải lên file giấy phép pháp lý để tính hash SHA-256.', 'warning');
         return;
       }
 

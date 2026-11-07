@@ -42,7 +42,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn file hồ sơ COA để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn file hồ sơ COA để tính hash SHA-256.');
     }
 
     // 3. Ghi on-chain
@@ -81,7 +81,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn phiếu kiểm nghiệm để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn phiếu kiểm nghiệm để tính hash SHA-256.');
     }
 
     await this.chain.recordTestResult(batchId, passed, reportNo, testDate, finalDocHash);
@@ -110,7 +110,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn tờ khai hải quan để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn tờ khai hải quan để tính hash SHA-256.');
     }
 
     await this.chain.recordImport(batchId, originCountry, customsDeclNo, importDate, finalDocHash);
@@ -139,7 +139,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn phiếu giao hàng để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn phiếu giao hàng để tính hash SHA-256.');
     }
 
     await this.chain.initiateTransfer(batchId, receiver, finalDocHash);
@@ -166,7 +166,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn biên bản nhận hàng để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn biên bản nhận hàng để tính hash SHA-256.');
     }
 
     await this.chain.confirmTransfer(batchId, finalDocHash);
@@ -217,7 +217,7 @@ export class BatchService {
       finalDocHash = await HashService.computeSHA256(file);
     }
     if (!finalDocHash) {
-      throw new Error('Vui lòng chọn phiếu kiểm tra QC để tính mã băm SHA-256.');
+      throw new Error('Vui lòng chọn phiếu kiểm tra QC để tính hash SHA-256.');
     }
 
     await this.chain.recordReceivingInspection(batchId, passed, reportNo, inspectDate, finalDocHash);
@@ -243,13 +243,14 @@ export class BatchService {
   async getBatchDetail(batchId) {
     const bId = Number(batchId);
 
-    // 1. Đọc dữ liệu on-chain chuẩn
-    const onChainBatch = await this.chain.getBatch(bId);
+    // 1. Đọc song song dữ liệu on-chain, event và metadata off-chain (mỗi nguồn là một lượt mạng riêng)
+    const [onChainBatch, chainEvents, meta] = await Promise.all([
+      this.chain.getBatch(bId),
+      this.chain.getBatchEvents(bId),
+      this.data.getBatchMetadata(bId),
+    ]);
     const isExpired = await this.chain.isExpired(bId);
-    const chainEvents = await this.chain.getBatchEvents(bId);
-
-    // 2. Đọc metadata off-chain
-    const metadata = (await this.data.getBatchMetadata(bId)) || {};
+    const metadata = meta || {};
 
     // Tên file hồ sơ chỉ lưu off-chain (metadata.documents), ghép vào event theo docHash
     const docs = metadata.documents || [];
@@ -291,6 +292,29 @@ export class BatchService {
         receiver: recOrg,
       },
     };
+  }
+
+  /**
+   * Danh sách mọi lô cho các trang hàng đợi (Importer, Receiver).
+   * Struct Batch on-chain không có materialName và mfgDate (hai trường này chỉ nằm trong event
+   * BatchRegistered), nên ghép thêm từ event. Event được adapter đọc một lần rồi dùng chung.
+   */
+  async listBatches() {
+    const count = await this.chain.getBatchCount();
+    if (!count) return [];
+    const batches = await this.chain.getBatches(1, count);
+    return Promise.all(
+      batches.map(async (b) => {
+        const events = await this.chain.getBatchEvents(b.id);
+        const reg = events.find((e) => e.eventName === 'BatchRegistered')?.fields || {};
+        return {
+          ...b,
+          batchId: b.id,
+          materialName: reg.materialName || b.materialName || '',
+          mfgDate: Number(reg.mfgDate ?? b.mfgDate ?? 0),
+        };
+      })
+    );
   }
 
   /**
