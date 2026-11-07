@@ -2,6 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <!-- Mở sẵn kết nối tới RPC của RSK, Blockscout và CDN web3: lần gọi đầu tiên đỡ mất khoảng 1–2 giây -->
+  <link rel="preconnect" href="https://public-node.testnet.rsk.co" crossorigin>
+  <link rel="preconnect" href="https://rootstock-testnet.blockscout.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Quản trị viên (Admin) - PharmaChain</title>
   <link rel="stylesheet" href="css/tokens.css">
@@ -132,7 +136,7 @@
                   <th>Vai trò</th>
                   <th>Tên đơn vị</th>
                   <th>Giấy phép</th>
-                  <th>Mã băm</th>
+                  <th>Hash</th>
                   <th>Ngày cấp</th>
                   <th style="text-align: right;">Thao tác</th>
                 </tr>

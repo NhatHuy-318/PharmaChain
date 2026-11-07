@@ -61,11 +61,12 @@ export async function initImporterPage() {
           showToast('Đang băm SHA-256 tờ khai hải quan...', 'info');
           importDocHash = await HashService.computeSHA256(file);
           if (importHashPreview) {
-            importHashPreview.textContent = `Mã băm SHA-256: ${importDocHash}`;
-            importHashPreview.className = 'file-hash-preview hash-ready';
+            importHashPreview.textContent = `Hash SHA-256: ${importDocHash}`;
+            importHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
-          showToast('Lỗi tính mã băm: ' + err.message, 'error');
+          showToast('Lỗi tính hash: ' + err.message, 'error');
         }
       }
     });
@@ -82,11 +83,12 @@ export async function initImporterPage() {
           showToast('Đang băm SHA-256 phiếu giao hàng...', 'info');
           transferDocHash = await HashService.computeSHA256(file);
           if (transferHashPreview) {
-            transferHashPreview.textContent = `Mã băm SHA-256: ${transferDocHash}`;
-            transferHashPreview.className = 'file-hash-preview hash-ready';
+            transferHashPreview.textContent = `Hash SHA-256: ${transferDocHash}`;
+            transferHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
-          showToast('Lỗi tính mã băm: ' + err.message, 'error');
+          showToast('Lỗi tính hash: ' + err.message, 'error');
         }
       }
     });
@@ -102,7 +104,7 @@ export async function initImporterPage() {
       e.preventDefault();
       const btn = $('#btn-submit-import');
       if (!importDocHash || !importSelectedFile) {
-        showToast('Vui lòng tải file Tờ khai hải quan và chờ hệ thống tính mã băm.', 'warning');
+        showToast('Vui lòng tải file Tờ khai hải quan và chờ hệ thống tính hash.', 'warning');
         return;
       }
 
@@ -151,7 +153,7 @@ export async function initImporterPage() {
         importForm.reset();
         importDocHash = null;
         importSelectedFile = null;
-        if (importHashPreview) importHashPreview.textContent = '';
+        if (importHashPreview) { importHashPreview.textContent = ''; importHashPreview.classList.remove('active'); }
         await loadAllData(chain, data);
       } catch (err) {
         showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -169,7 +171,7 @@ export async function initImporterPage() {
       e.preventDefault();
       const btn = $('#btn-submit-transfer');
       if (!transferDocHash || !transferSelectedFile) {
-        showToast('Vui lòng tải file Phiếu giao hàng và chờ hệ thống tính mã băm.', 'warning');
+        showToast('Vui lòng tải file Phiếu giao hàng và chờ hệ thống tính hash.', 'warning');
         return;
       }
 
@@ -211,7 +213,7 @@ export async function initImporterPage() {
         transferForm.reset();
         transferDocHash = null;
         transferSelectedFile = null;
-        if (transferHashPreview) transferHashPreview.textContent = '';
+        if (transferHashPreview) { transferHashPreview.textContent = ''; transferHashPreview.classList.remove('active'); }
         await loadAllData(chain, data);
       } catch (err) {
         showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -226,11 +228,11 @@ export async function initImporterPage() {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 async function loadAllData(chain, data) {
-  const currentAddr = walletService.getAccount()?.toLowerCase();
+  const currentAddr = walletService.getAddress()?.toLowerCase();
   if (!currentAddr) return;
 
   try {
-    const allBatches = await chain.getAllBatches();
+    const allBatches = await batchService.listBatches();
 
     // Lô cần nhập khẩu: importer là mình, status = Tested
     const importQueue = allBatches.filter(
@@ -253,7 +255,7 @@ async function loadAllData(chain, data) {
     let receiverOrgs = [];
     try {
       const orgs = await data.getOrganizations();
-      receiverOrgs = orgs.filter(o => o.role === 'Receiver');
+      receiverOrgs = orgs.filter(o => Number(o.role) === Role.Receiver);
     } catch (_) { /* ignore */ }
 
     renderImportQueue(importQueue);

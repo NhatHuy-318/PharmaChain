@@ -19,6 +19,8 @@ const ENV_FILE = path.join(ROOT, '.env');
 const DB_FILE = path.join(ROOT, 'server', 'db.json');
 const DEPLOY_FILE = path.join(ROOT, 'deployments', 'rsk-testnet.json');
 const RSK_RPC = 'https://public-node.testnet.rsk.co';
+// public-node của RSK tắt eth_getLogs, nên đọc event qua JSON-RPC của Blockscout
+const RSK_LOGS_RPC = 'https://rootstock-testnet.blockscout.com/api/eth-rpc';
 const RSK_CHAIN_ID = 31n;
 
 const Role = { Admin: 1, Manufacturer: 2, Inspector: 3, Importer: 4, Receiver: 5 };
@@ -427,10 +429,20 @@ async function seed({ web3, accounts }, plan, network) {
 }
 
 // Đọc lại từ chuỗi: trạng thái từng lô và hash trong mọi event phải khớp với file hồ sơ.
-async function verify(contract, plan, fromBlock) {
+// Blockscout lập chỉ mục chậm hơn chuỗi vài khối, nên chờ tới khi đủ event (tối đa khoảng 5 phút)
+async function readEvents(contract, fromBlock, expected) {
+  for (let i = 0; ; i++) {
+    const events = await contract.getPastEvents('allEvents', { fromBlock, toBlock: 'latest' });
+    if (events.length >= expected || i >= 30) return events;
+    await new Promise(r => setTimeout(r, 10000));
+  }
+}
+
+async function verify(contract, logsContract, plan, fromBlock) {
   let fail = 0;
   const check = (ok, msg) => { if (!ok) { fail++; console.log(`  FAIL ${msg}`); } };
-  const events = await contract.getPastEvents('allEvents', { fromBlock, toBlock: 'latest' });
+  const expected = plan.orgs.length + plan.batches.reduce((n, b) => n + b.steps.length, 0);
+  const events = await readEvents(logsContract, fromBlock, expected);
   for (const [i, b] of plan.batches.entries()) {
     const id = i + 1;
     check(Number(await contract.methods.getBatchIdByNo(b.batchNo).call()) === id, `${b.batchNo} có batchId ${id}`);
@@ -461,7 +473,8 @@ async function verify(contract, plan, fromBlock) {
   const conn = await connect(network);
   console.log(network === 'rsk' ? 'Mạng: RSK Testnet' : 'Mạng: Ganache trong bộ nhớ (chạy thử)');
   const result = await seed(conn, plan, network);
-  const ok = await verify(result.contract, plan, result.deployReceipt.blockNumber);
+
+  // Ghi file trước khi kiểm tra: giao dịch đã nằm trên chuỗi, kiểm tra lỗi cũng không được làm mất db.json
 
   const dbOut = network === 'rsk' ? DB_FILE : option('--db');
   if (dbOut) {
@@ -478,7 +491,12 @@ async function verify(contract, plan, fromBlock) {
       deployedAt: new Date().toISOString(), accounts: conn.accounts, transactions: result.log,
     }, null, 2) + '\n');
     console.log(`Đã ghi ${path.relative(ROOT, DEPLOY_FILE)}`);
-    console.log(`\nCập nhật dapp/js/config/env.js: CONTRACT_ADDRESS: '${address}', APP_MODE: 'live'`);
+    console.log(`\nCập nhật dapp/js/config/env.js: APP_MODE: 'live', CONTRACT_ADDRESS: '${address}', DEPLOY_BLOCK: ${Number(result.deployReceipt.blockNumber)}`);
   }
+
+  const logsContract = network === 'rsk'
+    ? new (new Web3(readEnv().RSK_LOGS_URL || RSK_LOGS_RPC)).eth.Contract(compile().abi, result.contract.options.address)
+    : result.contract;
+  const ok = await verify(result.contract, logsContract, plan, result.deployReceipt.blockNumber);
   process.exit(ok ? 0 : 1);
 })().catch(e => { console.error('\n' + (e.message || e)); process.exit(1); });

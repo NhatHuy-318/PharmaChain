@@ -83,7 +83,7 @@ export const i18n = Object.freeze({
     'BR: empty org name': 'Vui lòng nhập tên đơn vị / tổ chức đại diện.',
     'BR: no role': 'Ví này hiện chưa có vai trò nào trong hệ thống.',
     'BR: cannot revoke admin': 'Không thể thu hồi quyền của Quản trị viên tối cao.',
-    'BR: zero hash': 'Vui lòng tải lên tài liệu hợp lệ để băm mã SHA-256 (mã băm không được bằng 0).',
+    'BR: zero hash': 'Vui lòng tải lên tài liệu hợp lệ để tính hash SHA-256 (hash không được bằng 0).',
     'BR: batch not found': 'Không tìm thấy lô nguyên liệu với mã được yêu cầu.',
     'BR: wrong status': 'Lô không ở trạng thái cho phép thực hiện bước này.',
     'BR: empty batchNo': 'Vui lòng nhập số hiệu lô nguyên liệu.',
@@ -111,10 +111,10 @@ export const i18n = Object.freeze({
   },
 
   hash: {
-    calculating: 'Đang tính mã băm SHA-256 từ file...',
+    calculating: 'Đang tính hash SHA-256 từ file...',
     match: 'KHỚP — File trùng khớp byte tuyệt đối với tài liệu đã ghi trên Blockchain.',
     mismatch: 'KHÔNG KHỚP — Nội dung file đã bị chỉnh sửa hoặc đây là tài liệu khác.',
-    disclaimer: 'Lưu ý: Mã băm SHA-256 chỉ chứng minh tính toàn vẹn byte của file, không chứng minh tính hợp pháp pháp lý của nội dung.',
+    disclaimer: 'Lưu ý: Hash SHA-256 chỉ chứng minh tính toàn vẹn byte của file, không chứng minh tính hợp pháp pháp lý của nội dung.',
   },
 
   common: {

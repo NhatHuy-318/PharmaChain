@@ -75,10 +75,10 @@ export async function initInspectorPage() {
           showToast('Đang băm SHA-256 phiếu kiểm nghiệm...', 'info');
           computedDocHash = await HashService.computeSHA256(file);
           if (hashPreview) {
-            hashPreview.textContent = `Mã băm SHA-256: ${computedDocHash}`;
+            hashPreview.textContent = `Hash SHA-256: ${computedDocHash}`;
             hashPreview.classList.add('active');
           }
-          showToast('Đã tạo mã băm phiếu kiểm nghiệm thành công!', 'success');
+          showToast('Đã tạo hash phiếu kiểm nghiệm thành công!', 'success');
         } catch (err) {
           showToast(err.message, 'error');
         }

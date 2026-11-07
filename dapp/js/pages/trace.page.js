@@ -1,6 +1,6 @@
 /**
  * Trace Page Logic (M10 Spec)
- * Hiển thị toàn bộ tiến trình lịch sử lô nguyên liệu, mã QR định danh cố định và đối chiếu mã băm SHA-256
+ * Hiển thị toàn bộ tiến trình lịch sử lô nguyên liệu, mã QR định danh cố định và đối chiếu hash SHA-256
  */
 
 import { initApp } from '../main.js';
@@ -382,7 +382,7 @@ function renderTimeline(b) {
       const verifySec = $('#document-verification-section');
       if (verifySec) {
         verifySec.scrollIntoView({ behavior: 'smooth' });
-        showToast(`Đã chọn mã băm của [${btn.dataset.label}] để đối chiếu!`, 'info');
+        showToast(`Đã chọn hash của [${btn.dataset.label}] để đối chiếu!`, 'info');
       }
     });
   });
@@ -459,7 +459,7 @@ function setupVerificationSection(b) {
     }
 
     try {
-      showToast('Đang tính mã băm SHA-256 từ file...', 'info');
+      showToast('Đang tính hash SHA-256 từ file...', 'info');
       const verifyResult = await HashService.verifyFileHash(file, selectedDocHashForVerify);
 
       // Hiển thị kết quả trực quan
@@ -483,11 +483,11 @@ function setupVerificationSection(b) {
 
           <table class="hash-comparison-table">
             <tr>
-              <td style="width: 170px; color: var(--color-text-muted);">Mã băm tính từ file:</td>
+              <td style="width: 170px; color: var(--color-text-muted);">Hash tính từ file:</td>
               <td class="code-val">${verifyResult.calculatedHash}</td>
             </tr>
             <tr>
-              <td style="color: var(--color-text-muted);">Mã băm on-chain sự kiện:</td>
+              <td style="color: var(--color-text-muted);">Hash on-chain sự kiện:</td>
               <td class="code-val">${verifyResult.expectedHash}</td>
             </tr>
           </table>

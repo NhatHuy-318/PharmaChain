@@ -29,7 +29,7 @@ export function renderFooter() {
           <div>
             <div class="brand-title" style="font-size: 1.25rem;">Pharma<span style="color: var(--color-secondary-dark);">Chain</span></div>
             <p class="footer-brand-desc">
-              Giải pháp học thuật ứng dụng công nghệ hợp đồng thông minh trên Rootstock (RSK) Testnet nhằm minh bạch hóa chuỗi cung ứng nguyên liệu dược phẩm và bảo đảm tính toàn vẹn hồ sơ kiểm nghiệm bằng mã băm SHA-256.
+              Giải pháp học thuật ứng dụng công nghệ hợp đồng thông minh trên Rootstock (RSK) Testnet nhằm minh bạch hóa chuỗi cung ứng nguyên liệu dược phẩm và bảo đảm tính toàn vẹn hồ sơ kiểm nghiệm bằng hash SHA-256.
             </p>
           </div>
 
