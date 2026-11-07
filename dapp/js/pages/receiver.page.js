@@ -63,8 +63,9 @@ export async function initReceiverPage() {
           confirmDocHash = await HashService.computeSHA256(file);
           if (confirmHashPreview) {
             confirmHashPreview.textContent = `Hash SHA-256: ${confirmDocHash}`;
-            confirmHashPreview.className = 'file-hash-preview hash-ready';
+            confirmHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
           showToast('Lỗi tính hash: ' + err.message, 'error');
         }
@@ -85,8 +86,9 @@ export async function initReceiverPage() {
           qcDocHash = await HashService.computeSHA256(file);
           if (qcHashPreview) {
             qcHashPreview.textContent = `Hash SHA-256: ${qcDocHash}`;
-            qcHashPreview.className = 'file-hash-preview hash-ready';
+            qcHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
           showToast('Lỗi tính hash: ' + err.message, 'error');
         }
@@ -142,7 +144,7 @@ export async function initReceiverPage() {
         confirmForm.reset();
         confirmDocHash = null;
         confirmSelectedFile = null;
-        if (confirmHashPreview) confirmHashPreview.textContent = '';
+        if (confirmHashPreview) { confirmHashPreview.textContent = ''; confirmHashPreview.classList.remove('active'); }
         await loadAllData(chain, data);
       } catch (err) {
         showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -240,7 +242,7 @@ export async function initReceiverPage() {
             qcForm.reset();
             qcDocHash = null;
             qcSelectedFile = null;
-            if (qcHashPreview) qcHashPreview.textContent = '';
+            if (qcHashPreview) { qcHashPreview.textContent = ''; qcHashPreview.classList.remove('active'); }
             await loadAllData(chain, data);
           } catch (err) {
             showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -259,7 +261,7 @@ export async function initReceiverPage() {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 async function loadAllData(chain, data) {
-  const currentAddr = walletService.getAccount()?.toLowerCase();
+  const currentAddr = walletService.getAddress()?.toLowerCase();
   if (!currentAddr) return;
 
   try {

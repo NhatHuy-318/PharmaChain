@@ -62,8 +62,9 @@ export async function initImporterPage() {
           importDocHash = await HashService.computeSHA256(file);
           if (importHashPreview) {
             importHashPreview.textContent = `Hash SHA-256: ${importDocHash}`;
-            importHashPreview.className = 'file-hash-preview hash-ready';
+            importHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
           showToast('Lỗi tính hash: ' + err.message, 'error');
         }
@@ -83,8 +84,9 @@ export async function initImporterPage() {
           transferDocHash = await HashService.computeSHA256(file);
           if (transferHashPreview) {
             transferHashPreview.textContent = `Hash SHA-256: ${transferDocHash}`;
-            transferHashPreview.className = 'file-hash-preview hash-ready';
+            transferHashPreview.classList.add('active');
           }
+          showToast('Đã tính hash SHA-256 thành công!', 'success');
         } catch (err) {
           showToast('Lỗi tính hash: ' + err.message, 'error');
         }
@@ -151,7 +153,7 @@ export async function initImporterPage() {
         importForm.reset();
         importDocHash = null;
         importSelectedFile = null;
-        if (importHashPreview) importHashPreview.textContent = '';
+        if (importHashPreview) { importHashPreview.textContent = ''; importHashPreview.classList.remove('active'); }
         await loadAllData(chain, data);
       } catch (err) {
         showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -211,7 +213,7 @@ export async function initImporterPage() {
         transferForm.reset();
         transferDocHash = null;
         transferSelectedFile = null;
-        if (transferHashPreview) transferHashPreview.textContent = '';
+        if (transferHashPreview) { transferHashPreview.textContent = ''; transferHashPreview.classList.remove('active'); }
         await loadAllData(chain, data);
       } catch (err) {
         showToast('Lỗi: ' + translateError(err.message || String(err)), 'error');
@@ -226,7 +228,7 @@ export async function initImporterPage() {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 async function loadAllData(chain, data) {
-  const currentAddr = walletService.getAccount()?.toLowerCase();
+  const currentAddr = walletService.getAddress()?.toLowerCase();
   if (!currentAddr) return;
 
   try {

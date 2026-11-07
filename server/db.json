@@ -513,6 +513,68 @@
       "isMock": false,
       "id": 9,
       "batchId": 9
+    },
+    {
+      "id": 11,
+      "batchId": 11,
+      "batchNo": "THI-ABC-20261107-011",
+      "materialName": "Thiamine hydrochloride (Vitamin B1)",
+      "storageConditions": "Nơi khô mát, dưới 25°C, tránh ánh sáng và ẩm",
+      "mfgDate": 1793552400,
+      "expiryDate": 1856710800,
+      "docHash": "0x0ad8d52c02754c36a4984681db584a46f63718b10e28da35e68871bd5f2bb19b",
+      "quantity": 150,
+      "unit": "kg",
+      "packageCount": 6,
+      "packagingSpec": "6 thùng x 25 kg, lót 2 lớp túi PE",
+      "countryOfOrigin": "Ấn Độ",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "importerName": "Công ty Nhập khẩu Gamma",
+      "isMock": false,
+      "dataSource": "Lô kiểm thử thêm thủ công",
+      "documents": [
+        {
+          "step": "B1",
+          "docNo": "COA-2026-0011",
+          "fileName": "B1_COA-2026-0011.txt",
+          "docHash": "0x0ad8d52c02754c36a4984681db584a46f63718b10e28da35e68871bd5f2bb19b",
+          "txHash": "0x54e0a770137b0f2fe007069a957f0d15f86685e77f7d726daa188db5b72fc343"
+        }
+      ]
+    },
+    {
+      "batchNo": "PYR-ABC-20261102-012",
+      "materialName": "Pyridoxine hydrochloride (Vitamin B6)",
+      "storageConditions": "Nơi khô mát, dưới 25°C, tránh ánh sáng",
+      "docHash": "0x6e0d971d9d439ed18780027f550705a51d86640ad2e85eb03ef1397ff95ed632",
+      "quantity": 100,
+      "unit": "kg",
+      "packageCount": 4,
+      "packagingSpec": null,
+      "countryOfOrigin": "Ấn Độ",
+      "notes": "",
+      "manufacturerName": "Công ty Hóa dược ABC",
+      "materialCode": null,
+      "grade": null,
+      "pharmacopoeiaStandard": null,
+      "productSpecRef": null,
+      "packageType": null,
+      "sealNumber": null,
+      "netWeight": null,
+      "grossWeight": null,
+      "isMock": false,
+      "id": 12,
+      "batchId": 12,
+      "testReportNo": "KN-2026-0012",
+      "testPassed": true,
+      "testDate": 1793750400,
+      "testDocHash": "0x4ad71e6ce921a9e89f2107f6a9c169bd5d164a81cdc7c10f86d09ce41d211230",
+      "testMethod": "HPLC theo Dược điển Việt Nam V",
+      "testNotes": "Định lượng: 99,4% Kết luận: ĐẠT",
+      "sampleId": null,
+      "specificationRef": null,
+      "analystName": null,
+      "reviewerName": null
     }
   ],
   "organizations": [
@@ -586,6 +648,15 @@
       "operatingSite": "Khu công nghiệp Việt Nam - Singapore, Bình Dương",
       "grantedAt": 1793871160,
       "txHash": "0x1bca9ea44eb0eaaf7d15ab6ae661496ce8e8df45f08aa2bb111cc0390af9bd91"
+    },
+    {
+      "address": "0x626d49d2e34a89fec4ac41488cecb9cf11e4a1e0",
+      "role": 2,
+      "name": "Công ty TNHH Dược Mỹ Phẩm Nhật Huy",
+      "licenseNo": "GP-DKKD-2026-318",
+      "licenseHash": "0x80f679ea08f9adec3cda6a2ff9accc12ee1f1263e13fd3b30c0c1a1077a567e9",
+      "grantedAt": 1794021977,
+      "id": "0x626d49d2e34a89fec4ac41488cecb9cf11e4a1e0"
     }
   ]
 }
